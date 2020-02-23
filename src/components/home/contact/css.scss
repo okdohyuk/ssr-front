@@ -1,0 +1,27 @@
+// contact
+
+.contact {
+    background-image: url("../../../lib/image/background_4.png");
+    background-size: 100% 100%;
+}
+
+.text {
+    height: 100px;
+    color: #FFFFFF;
+    font-size: 50px;
+
+    @media screen and (max-device-width: 800px){
+        font-size: 25px;
+    }
+}
+
+.move {
+    img {
+        height: 150px;
+        margin: 30px;
+        
+        @media screen and (max-device-width: 800px){
+            height: 100px;
+        }
+    }
+}

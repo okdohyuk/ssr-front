@@ -1,0 +1,53 @@
+// product
+
+.product {
+    background-image: url("../../../lib/image/background_2.png");
+    background-size: 100% 100%;
+}
+
+.count-area {
+    display: flex;
+    justify-content: space-around;
+}
+
+.count {
+    width: 270px;
+    height: 150px;
+    padding-top: 40px;
+    border-radius: 20px;
+    color: #FFFFFF;
+    font-size: 60px;
+
+    @media screen and (max-device-width: 630px){
+        height: 100px;
+        padding-top: 0;
+        font-size: 50px;
+    }
+
+    p {
+        font-size: 25px;
+    }
+}
+
+.count1 {
+    background: #F24949;
+}
+
+.count2 {
+    background: #2955F0;
+}
+
+.count3 {
+    background: #8949F2;
+}
+
+details {
+    margin-top: 40px;
+    color: #FFFFFF;
+}
+
+summary {
+    outline: none;
+    font-weight: bold;
+    font-size: 36px;
+}
