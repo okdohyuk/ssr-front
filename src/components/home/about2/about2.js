@@ -1,5 +1,10 @@
 import './css.scss';
+import bin from 'lib/profile/profile_bin.png';
+import back from 'lib/profile/profile_back.png';
 import gyu from 'lib/profile/profile_gyu.png';
+import you from 'lib/profile/profile_you.png';
+import cha from 'lib/profile/profile_cha.png';
+import oh from 'lib/profile/profile_oh.png';
 import React from 'react';
 
 function About2() {
@@ -9,12 +14,12 @@ function About2() {
                 <h1 className="title2">10th</h1>
                     <div className="members">
                         <div className="profile profile_1">
-                            <img src={gyu} alt={gyu}/>
+                            <img src={bin} alt={bin}/>
                                 <h2>정빈</h2>
                                 <h3>부장, 앱 개발</h3>
                         </div>
                         <div className="profile profile_2">
-                            <img src={gyu} alt={gyu}/>
+                            <img src={back} alt={back}/>
                                 <h2>김경백</h2>
                                 <h3>차장, 서버 개발</h3>
                         </div>
@@ -45,12 +50,12 @@ function About2() {
                 <h1 className="title2">11th</h1>
                 <div className="members">
                         <div className="profile profile_7">
-                            <img src={gyu} alt={gyu}/>
+                            <img src={you} alt={you}/>
                                 <h2>유도혁</h2>
                                 <h3>부장, 웹 프론트</h3>
                         </div>
                         <div className="profile profile_8">
-                            <img src={gyu} alt={gyu}/>
+                            <img src={cha} alt={cha}/>
                                 <h2>차주한</h2>
                                 <h3>차장, 웹 해킹</h3>
                         </div>
@@ -60,7 +65,7 @@ function About2() {
                                 <h3>앱 개발</h3>
                         </div>
                         <div className="profile profile_10">
-                            <img src={gyu} alt={gyu}/>
+                            <img src={oh} alt={oh}/>
                                 <h2>오승민</h2>
                                 <h3>웹 프론트</h3>
                         </div>

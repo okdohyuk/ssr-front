@@ -19,7 +19,7 @@
     text-shadow: -1px 0 #333333, 0 1px #333333, 1px 0 #333333, 0 -1px #333333;
     font-size: 50px;
 
-    @media screen and (max-device-width: 800px){
+    @media screen and (max-width: 800px){
         width: 100%;
         text-align: center;
     }

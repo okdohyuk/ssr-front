@@ -23,20 +23,10 @@ const fullpageOptions = {
     callbacks: ['onLeave'],
     menu: '#myMenu',
     responsiveWidth: 600,
-    controlArrows: false,
     fitToSection: false,
     recordHistory: false,
     dragAndMove: true,
-    navigation: true,
     slidesNavigation: true,
-    navigationTooltips: [
-        'SSR',
-        'ABOUT',
-        'ABOUT 2',
-        'PRODUCT',
-        'BENEFIT',
-        'CONTACT'
-    ]
 };
 
 class HomePage extends React.Component {

@@ -3,6 +3,9 @@
 .ssr {
     background-image: url("../../../lib/image/background.png");
     background-size: 100% 100%;
+    @media screen and (max-device-width: 630px){
+        background-size: 300% 100%;
+    }
 
     img  {
         height: 260px;

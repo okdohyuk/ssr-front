@@ -1,3 +1,10 @@
 .section {
     text-align: center;
 }
+
+.fp-controlArrow {
+    @media screen and (max-device-width: 830px){
+        display: none;
+    }
+}
+

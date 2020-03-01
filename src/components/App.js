@@ -4,8 +4,7 @@ import HomePage from './home/home';
 import ApplyPage from './apply/apply';
 import CheckPage from './check/check';
 import ErrorPage from './error/error';
-import { Redirect, Route, Switch } from 'react-router-dom';
-
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 
 function App() {
     return (
@@ -19,4 +18,4 @@ function App() {
     );
 }
 
-export default App;
+export default withRouter(App);
