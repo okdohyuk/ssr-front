@@ -1,9 +1,17 @@
 import React from 'react';
 
-function ErrorPage() {
+class ErrorPage extends React.Component {
+    componentDidMount(){
+        document.title = "SSR-Error"
+    }
+    render() {
     return(
-        <div>404 error</div>
+        <div>
+            <title>Error</title>
+            <h1>404 Not Found</h1>
+        </div>
     );
+    }
 }
 
 export default ErrorPage;

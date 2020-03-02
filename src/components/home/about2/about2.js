@@ -1,4 +1,4 @@
-import './css.scss';
+import './about2.scss';
 import bin from 'lib/profile/profile_bin.png';
 import back from 'lib/profile/profile_back.png';
 import gyu from 'lib/profile/profile_gyu.png';
@@ -7,7 +7,8 @@ import cha from 'lib/profile/profile_cha.png';
 import oh from 'lib/profile/profile_oh.png';
 import React from 'react';
 
-function About2() {
+class About2 extends React.Component {
+render(){
     return(
         <div className="section about2">
             <div className="slide" data-anchor="slide1">
@@ -83,6 +84,7 @@ function About2() {
             </div>
         </div>
     );
+}
 }
 
 export default About2;

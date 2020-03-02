@@ -12,6 +12,7 @@ import React from 'react';
 import ReactFullpage from '@fullpage/react-fullpage';
 
 const fullpageOptions = {
+    sectionsColor: ['#00000000', '#90827D', '#90827D', '#7C8C89', '#72789D', '#929292'],
     anchors: [
         'ssr',
         'about',
@@ -31,25 +32,25 @@ const fullpageOptions = {
 
 class HomePage extends React.Component {
     render() {
-        return (
-            <div>
-                <Navigation/>
-                <ReactFullpage
-                    {...fullpageOptions}
-                    render={({state, fullpageApi}) => {
-                        return (
-                            <div id="fullpage-wrapper">
-                                <SSR/>
-                                <About/>
-                                <About2/>
-                                <Product/>
-                                <Benefit/>
-                                <Contact/>
-                            </div>
-                        );
-                    }}/>
-            </div>
-        );
+    return (
+        <div>
+        <Navigation/>
+        <ReactFullpage
+            {...fullpageOptions}
+            render={({state, fullpageApi}) => {
+                return (
+                    <div id="fullpage-wrapper">
+                        <SSR/>
+                        <About/>
+                        <About2/>
+                        <Product/>
+                        <Benefit/>
+                        <Contact/>
+                    </div>
+                );
+            }}/>
+        </div>
+    );
     }
 }
 

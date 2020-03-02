@@ -1,8 +1,9 @@
-import "./css.scss";
+import "./navigation.scss";
 import logo from "lib/image/logo.png";
 import React from "react";
 
-function Navigation() {
+class Navigation extends React.Component {
+render(){
   return (
     <header>
       <h1 className="logo">
@@ -28,6 +29,7 @@ function Navigation() {
       </nav>
     </header>
   );
+}
 }
 
 export default Navigation;

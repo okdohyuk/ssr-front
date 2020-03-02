@@ -1,4 +1,4 @@
-import './css.scss';
+import style from './apply.module.scss';
 import main from 'lib/image/main.png';
 
 import React from 'react';
@@ -91,86 +91,90 @@ class ApplyPage extends React.Component {
         isRtl,
     } = this.state;
     return(
-        <div className="apply">
-            <div className="apply-content">
-                <img src={main} alt={main}></img>
-                <form className="apply-area" name="apply" action="값을 보낼 주소" method="post">
+        <div className={style.apply}>
+            <div className={style.applyContent}>
+                <img className={style.ssrImg} src={main} alt={main}></img>
+                <form className={style.applyArea} name="apply" action="값을 보낼 주소" method="post">
 
-                <div className="select-table">
-                    <div className="select-table-row">
+                <div className={style.selectTable}>
+                    <div className={style.selectTableRow}>
                 <Select
                     name="field"
                     options={fieldOptions}
                     placeholder="분야 선택"
-                    className="select"
+                    className={style.select}
                     isRtl={isRtl}
                     isLoading={isLoading}
                     isClearable={isClearable}
                     isSearchable={isSearchable}
+                    required
                 />
                 <Select
                     name="grade"
                     options={gradeOptions}
                     placeholder="학년 선택"
-                    className="select"
+                    className={style.select}
                     isRtl={isRtl}
                     isLoading={isLoading}
                     isClearable={isClearable}
                     isSearchable={isSearchable}
+                    required
                 />
                 <Select
                     name="major"
                     options={majorOptions}
                     placeholder="학과 선택"
-                    className="select"
+                    className={style.select}
                     isRtl={isRtl}
                     isLoading={isLoading}
                     isClearable={isClearable}
                     isSearchable={isSearchable}
+                    required
                 /></div>
                 <div className="select-table-row">
                 <Select
                     name="classNum"
                     options={classNumOptions}
                     placeholder="반 선택"
-                    className="select"
+                    className={style.select}
                     isRtl={isRtl}
                     isLoading={isLoading}
                     isClearable={isClearable}
                     isSearchable={isSearchable}
+                    required
                 />
                 <Select
                     name="studentNum"
                     options={studentNumOptions}
                     placeholder="번호 선택"
-                    className="select"
+                    className={style.select}
                     isRtl={isRtl}
                     isLoading={isLoading}
                     isClearable={isClearable}
                     isSearchable={isSearchable}
+                    required
                 />
-                <input name="name" id="name" placeholder="이름을 입력하세요" type="text" maxLength="10" />
+                <input name="name" id={style.name} placeholder="이름을 입력하세요" type="text" maxLength="10" required/>
                 </div>
                 </div>
                 
-                <div className="account-table">
-                <div className="account-cell"><label htmlFor="email">이메일</label>
-                <input type="text" id="email" name="email" maxLength="30" />
+                <div className={style.accountTable}>
+                <div className={style.accountCell}><label htmlFor="email">이메일</label>
+                <input type="text" id={style.email} name="email" maxLength="30" required/>
+                </div>
+                <div className={style.accountCell}><label htmlFor="password">비밀번호</label>
+                <input type="password" id={style.password} name="password" maxLength="30" required/>
+                </div>
                 </div>
 
-                <div className="account-cell"><label htmlFor="password">비밀번호</label>
-                <input type="password" id="password" name="password" maxLength="30" />
-                </div>
-                </div>
-
-                <div className="form-content"><label htmlFor="content">자신에 대해 소개해주세요.</label>
-                <textarea id="content" name="content" maxLength="500" placeholder="자기소개, 지원동기, 각오 등을 적어주세요!"></textarea>
+                <div className={style.formContent}><label htmlFor="content">자신에 대해 소개해주세요.</label>
+                <textarea id={style.content} name="content" maxLength="500" placeholder="자기소개, 지원동기, 각오 등을 적어주세요!" required></textarea>
                 </div>
 
 
-                <div className="button-area">
-                <input type="button" id="back" onClick={function(){window.history.back()}} value="뒤로가기" />
-                <input type="submit" id="submit" name="isSubmit" value="등록하기" />
+                <div className={style.buttonArea}>
+                <button type="button" id={style.back} onClick={function(){window.history.back()}}>뒤로가기</button>
+                <button type="submit" id={style.submit} name="isSubmit">등록하기</button>
                 </div>
                 </form>
             </div>

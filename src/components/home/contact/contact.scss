@@ -1,16 +1,12 @@
 // contact
 
-.contact {
-    background-image: url("../../../lib/image/background_4.png");
-    background-size: 100% 100%;
-}
-
-.text {
+.contactText {
     height: 100px;
     color: #FFFFFF;
     font-size: 50px;
 
     @media screen and (max-device-width: 630px){
+        height: 50px;
         font-size: 25px;
     }
 }
@@ -22,6 +18,7 @@
         
         @media screen and (max-device-width: 830px){
             height: 100px;
+            margin: 5px;
         }
     }
 }

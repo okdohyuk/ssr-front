@@ -1,11 +1,12 @@
-import './css.scss';
+import './product.scss';
 import React from 'react';
 
-function Product() {
+class Product extends React.Component {
+render(){
     return(
-        <div className="section product">
+        <div className="section">
             <h1 className="title1">PRODUCT</h1>
-            <div className="count-area">
+            <div className="countArea">
                 <div className="count count1">50<p>수상 횟수</p></div>
                 <div className="count count2">40+<p>달성한 성과</p></div>
                 <div className="count count3">12<p>수료생 배출</p></div>
@@ -16,6 +17,7 @@ function Product() {
             </details>
         </div>
     );
+}
 }
 
 export default Product;

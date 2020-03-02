@@ -1,0 +1,35 @@
+// benefit
+
+.benefitArea {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    img {
+        width: 400px;
+        height: 300px;
+        margin-right: 30px;
+        margin-left: 30px;
+
+        @media screen and (max-device-width: 630px){
+            width: 300px;
+            height: 225px;
+        }
+    }
+}
+
+.text {
+    width: 380px;
+    line-height: 70px;
+    text-align: start;
+    color: #FFFFFF;
+    font-size: 50px;
+
+    @media screen and (max-width: 830px){
+        margin-top: 20px;
+        line-height: 40px;
+        text-align: center;
+        font-size: 30px;
+    }
+}

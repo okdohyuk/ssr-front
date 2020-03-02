@@ -1,9 +1,6 @@
 // about2
 
 .about2 {
-    background-image: url("../../../lib/image/background_1.png");
-    background-size: 100% 100%;
-
     @media screen {
         height: auto!important;
     }
@@ -39,10 +36,14 @@
 }
 
 .profile {
-    width: 300px;
+    margin-left: 70px;
+    margin-right: 70px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 
     @media screen and (max-device-width: 630px){
-        width: 150px;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
     img {
