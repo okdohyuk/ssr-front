@@ -1,8 +1,9 @@
 import style from './apply.module.scss';
-import main from 'lib/image/main.png';
+import main from 'lib/image/main_black.png';
 
 import React from 'react';
 import Select from 'react-select';
+import TextareaAutosize from 'react-autosize-textarea';
 
 const fieldOptions = [
     { value: 'Forensic', label: 'Forensic' },
@@ -65,10 +66,13 @@ const studentNumOptions = [
     { value: '30', label: '30번' },
 ];
 
+
+
 class ApplyPage extends React.Component {
     componentDidMount() {
         this.unblock = this.props.history.block('정말 떠나실건가요?');
     }
+
     componentWillUnmount() {
         if (this.unblock) {
             this.unblock();
@@ -82,6 +86,25 @@ class ApplyPage extends React.Component {
         isSearchable: false,
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {value: ''};
+    
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    
+    handleChange(event) {
+        this.setState({value: event.target.value});
+    }
+    
+    handleSubmit(event) {
+        alert('A name was submitted: ' + this.state.value);
+        event.preventDefault();
+    }
+
+    
+
     
     render() {
     const {
@@ -92,12 +115,13 @@ class ApplyPage extends React.Component {
     } = this.state;
     return(
         <div className={style.apply}>
-            <div className={style.applyContent}>
+            <div className={style.applyContainer}>
+                <form className={style.applyWrap} onSubmit={this.handleSubmit} name="apply" action="값을 보낼 주소" method="post">
+                <div className={style.applyForm}>
                 <img className={style.ssrImg} src={main} alt={main}></img>
-                <form className={style.applyArea} name="apply" action="값을 보낼 주소" method="post">
+                <h1 className={style.title}>지원서</h1>
 
-                <div className={style.selectTable}>
-                    <div className={style.selectTableRow}>
+
                 <Select
                     name="field"
                     options={fieldOptions}
@@ -130,8 +154,7 @@ class ApplyPage extends React.Component {
                     isClearable={isClearable}
                     isSearchable={isSearchable}
                     required
-                /></div>
-                <div className="select-table-row">
+                />
                 <Select
                     name="classNum"
                     options={classNumOptions}
@@ -154,27 +177,27 @@ class ApplyPage extends React.Component {
                     isSearchable={isSearchable}
                     required
                 />
-                <input name="name" id={style.name} placeholder="이름을 입력하세요" type="text" maxLength="10" required/>
-                </div>
-                </div>
-                
-                <div className={style.accountTable}>
-                <div className={style.accountCell}><label htmlFor="email">이메일</label>
-                <input type="text" id={style.email} name="email" maxLength="30" required/>
-                </div>
-                <div className={style.accountCell}><label htmlFor="password">비밀번호</label>
-                <input type="password" id={style.password} name="password" maxLength="30" required/>
-                </div>
-                </div>
+                <div class={style.wrapInput}>
+					<input className={style.input} type="text" name="name"/>
+					<span className={style.focusInput} data-placeholder="이름"></span>
+				</div>
+                <div class={style.wrapInput}>
+					<input className={style.input} type="text" name="email"/>
+					<span className={style.focusInput} data-placeholder="이메일"></span>
+				</div>
 
-                <div className={style.formContent}><label htmlFor="content">자신에 대해 소개해주세요.</label>
-                <textarea id={style.content} name="content" maxLength="500" placeholder="자기소개, 지원동기, 각오 등을 적어주세요!" required></textarea>
-                </div>
+				<div class={style.wrapInput}>
+					<input className={style.input} type="password" name="password"/>
+					<span className={style.focusInput} data-placeholder="비밀번호"></span>
+				</div>
 
+                <div className={style.wrapInput}>
+                    <TextareaAutosize class={style.input} name="content" maxLength="500"/>
+					<span className={style.focusInput} data-placeholder="자기소개 - 자기소개는 자유양식입니다."></span>
+				</div>
 
-                <div className={style.buttonArea}>
-                <button type="button" id={style.back} onClick={function(){window.history.back()}}>뒤로가기</button>
                 <button type="submit" id={style.submit} name="isSubmit">등록하기</button>
+
                 </div>
                 </form>
             </div>

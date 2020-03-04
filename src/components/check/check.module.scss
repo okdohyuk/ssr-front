@@ -1,10 +1,6 @@
 .check {
     width: 100%;
     margin: 0 auto;
-    background-image: url("../../lib/image/background.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-
 }
 
 .checkContainer {
@@ -132,20 +128,6 @@
 
 .input:focus + .focusInput::before {
     width: 100%;
-}
-
-.button {
-}
-
-#back {
-    width: 130px;
-    height: 50px;
-    margin: 10px 10px 10px 0px;
-    border: none;
-    background-color: #CCCCCC;
-    font-weight: bold;
-    font-size: 20px;
-    color: #333333;
 }
 
 #submit {
