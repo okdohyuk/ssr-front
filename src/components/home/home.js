@@ -40,6 +40,7 @@ class HomePage extends React.Component {
             render={({state, fullpageApi}) => {
                 return (
                     <div id="fullpage-wrapper">
+                        
                         <SSR/>
                         <About/>
                         <About2/>

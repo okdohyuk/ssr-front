@@ -19,6 +19,19 @@ render(){
                 <h1 className="title1">ABOUT</h1>
                 <span className="aboutSSR">동아리 부원 각자의 적성에 맞는 분야를 찾아<br/> 발전시켜나가며 교내, 교외 <b>대회 수상</b>을<br/> 목표로 활동하고 있습니다.</span>
             </div>
+            <div class="slide" data-anchor="slide4">
+            <h1 class="title">
+            <span>Hi, nice</span>
+            <span>to see</span>
+            <span>you here</span>
+            </h1>
+
+            <h2 class="title">
+            <span>This is</span>
+            <span>a long</span>
+            <span>sub title</span>
+            </h2>
+            </div>
         </div>
     );
 }
