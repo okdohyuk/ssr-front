@@ -24,3 +24,17 @@ button {
         font-style: normal;
     }
 }
+
+.section {
+    text-align: center;
+}
+
+.fp-controlArrow {
+    @media screen and (max-device-width: 830px){
+        display: none;
+    }
+}
+
+.active a {
+    text-decoration: underline;
+}

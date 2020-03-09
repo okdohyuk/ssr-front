@@ -1,5 +1,4 @@
 import React from 'react';
-
 import HomePage from './home/home';
 import ApplyPage from './apply/apply';
 import CheckPage from './check/check';

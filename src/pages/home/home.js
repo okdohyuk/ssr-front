@@ -1,4 +1,3 @@
-import './home.scss';
 import Navigation from './navigation/navigation';
 import SSR from './ssr/ssr';
 import About from './about/about';
@@ -25,13 +24,11 @@ const fullpageOptions = {
     menu: '#myMenu',
     responsiveWidth: 600,
     fitToSection: false,
-    recordHistory: false,
     dragAndMove: true,
     slidesNavigation: true,
 };
 
-class HomePage extends React.Component {
-    render() {
+export default function HomePage() {
     return (
         <div>
         <Navigation/>
@@ -52,7 +49,4 @@ class HomePage extends React.Component {
             }}/>
         </div>
     );
-    }
 }
-
-export default HomePage;

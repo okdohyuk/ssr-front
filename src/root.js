@@ -1,13 +1,11 @@
-import App from 'components/App';
+import App from './pages/App';
 import React from 'react';
 import { BrowserRouter } from "react-router-dom";
 
-function Root() {
+export default function Root() {
     return (
       <BrowserRouter>
         <App />
       </BrowserRouter>
-      );
+    );
 }
-
-export default Root;
