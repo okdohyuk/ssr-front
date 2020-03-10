@@ -1,5 +1,5 @@
 import main from 'lib/image/main_black.png';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
@@ -48,8 +48,29 @@ export default function CheckPage() {
         document.title = "SSR-조회하기";
     });
     const classes = useStyles();
-    
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+    const [error, setError] = useState(false);
 
+    useEffect(() => {
+        if (username.trim() && password.trim()) {
+            setIsButtonDisabled(false);
+        } else {
+            setIsButtonDisabled(true);
+        }
+    }, [username, password]);
+
+    const handleLogin = () => {
+        setError(false);
+    };
+
+    const handleKeyPress = (e:any) => {
+        if (e.keyCode === 13 || e.which === 13) {
+            isButtonDisabled || handleLogin();
+        }
+    };
+    
     return(
         <React.Fragment>
             <form className={classes.Container} name="apply" action="값을 보낼 주소" method="post">
@@ -62,18 +83,24 @@ export default function CheckPage() {
                     <CardContent>
                         <div>
                             <TextField 
+                                error={error}
                                 id="emailInput" 
                                 fullWidth
                                 type="email"
                                 margin="normal" 
                                 label="이메일"
+                                onChange={(e)=>setUsername(e.target.value)}
+                                onKeyPress={(e)=>handleKeyPress(e)}
                             />
                             <TextField
+                                error={error}
                                 id="passworldInput" 
                                 fullWidth 
                                 type="password" 
                                 margin="normal"
                                 label="비밀번호"
+                                onChange={(e)=>setPassword(e.target.value)}
+                                onKeyPress={(e)=>handleKeyPress(e)}
                             />
                         </div>
                     </CardContent>
@@ -84,8 +111,10 @@ export default function CheckPage() {
                             className={classes.subButton} 
                             type="submit" 
                             fullWidth 
-                            margin="normal" 
-                            size="large">
+                            size="large"
+                            onClick={()=>handleLogin()}
+                            disabled={isButtonDisabled}
+                            >
                             조회하기
                         </Button>
                     </CardActions>

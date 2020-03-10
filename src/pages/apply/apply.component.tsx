@@ -58,6 +58,7 @@ createStyles({
 );
 
 export default function ApplyPage() {
+    
 useEffect(() => {
     document.title = "SSR-지원하기";
 });
@@ -195,8 +196,7 @@ const classes = useStyles();
                             variant="contained"
                             className={classes.subButton} 
                             type="submit" 
-                            fullWidth 
-                            margin="normal" 
+                            fullWidth
                             size="large"
                             >
                             지원하기

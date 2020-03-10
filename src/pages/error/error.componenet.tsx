@@ -5,9 +5,9 @@ export default function ErrorPage() {
         document.title = "SSR-Error";
     });
     return(
-        <div>
+        <React.Fragment>
             <title>Error</title>
             <h1>404 Not Found</h1>
-        </div>
+        </React.Fragment>
     );
 }

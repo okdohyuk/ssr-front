@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import bin from 'lib/profile/profile_bin.png';
 import back from 'lib/profile/profile_back.png';
@@ -7,6 +6,7 @@ import gyu from 'lib/profile/profile_gyu.png';
 import you from 'lib/profile/profile_you.png';
 import cha from 'lib/profile/profile_cha.png';
 import oh from 'lib/profile/profile_oh.png';
+import styled from 'styled-components';
 
 const Title = styled.h1`
     width: 750px;
@@ -24,7 +24,7 @@ const Title = styled.h1`
     }
 `;
 
-const Members = styled.div`
+const MembersWrap = styled.div`
     width: 900px;
     margin-left: auto;
     margin-right: auto;
@@ -69,11 +69,11 @@ const Section = styled.div`
     }
 `;
 
-export default function About2() {
+export default function Members() {
     return(
         <Section className="section">
             <div className="slide" data-anchor="slide1">
-                    <Members>
+                    <MembersWrap>
                     <Title>10th</Title>
                         <Profile>
                             <img src={bin} alt={bin}/>
@@ -105,11 +105,11 @@ export default function About2() {
                                 <h2>윤영서</h2>
                                 <h3>웹 해킹</h3>
                         </Profile>
-                    </Members>
+                    </MembersWrap>
             </div>
 
             <div className="slide" data-anchor="slide2">
-                <Members>
+                <MembersWrap>
                 <Title>11th</Title>
                         <Profile>
                             <img src={you} alt={you}/>
@@ -141,7 +141,7 @@ export default function About2() {
                                 <h2>조영환</h2>
                                 <h3>앱 개발</h3>
                         </Profile>
-                    </Members>
+                    </MembersWrap>
             </div>
         </Section>
     );
