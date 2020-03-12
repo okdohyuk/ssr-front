@@ -1,8 +1,9 @@
-import main from 'lib/image/main_black.png';
 import React, { useEffect, useState } from 'react';
-import TextField from '@material-ui/core/TextField';
+
+import main from 'lib/image/main_black.png';
 import Button from '@material-ui/core/Button';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 import { yellow } from '@material-ui/core/colors';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -44,32 +45,19 @@ createStyles({
 );
 
 export default function CheckPage() {
-    useEffect(() => {
-        document.title = "SSR-조회하기";
-    });
     const classes = useStyles();
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-    const [error, setError] = useState(false);
 
     useEffect(() => {
-        if (username.trim() && password.trim()) {
+        document.title = "SSR-조회하기";
+        if (email.trim() && password.trim()) {
             setIsButtonDisabled(false);
         } else {
             setIsButtonDisabled(true);
         }
-    }, [username, password]);
-
-    const handleLogin = () => {
-        setError(false);
-    };
-
-    const handleKeyPress = (e:any) => {
-        if (e.keyCode === 13 || e.which === 13) {
-            isButtonDisabled || handleLogin();
-        }
-    };
+    }, [email, password]);
     
     return(
         <React.Fragment>
@@ -83,24 +71,20 @@ export default function CheckPage() {
                     <CardContent>
                         <div>
                             <TextField 
-                                error={error}
                                 id="emailInput" 
                                 fullWidth
                                 type="email"
                                 margin="normal" 
                                 label="이메일"
-                                onChange={(e)=>setUsername(e.target.value)}
-                                onKeyPress={(e)=>handleKeyPress(e)}
+                                onChange={(e)=>setEmail(e.target.value)}
                             />
                             <TextField
-                                error={error}
                                 id="passworldInput" 
                                 fullWidth 
                                 type="password" 
                                 margin="normal"
                                 label="비밀번호"
                                 onChange={(e)=>setPassword(e.target.value)}
-                                onKeyPress={(e)=>handleKeyPress(e)}
                             />
                         </div>
                     </CardContent>
@@ -112,7 +96,6 @@ export default function CheckPage() {
                             type="submit" 
                             fullWidth 
                             size="large"
-                            onClick={()=>handleLogin()}
                             disabled={isButtonDisabled}
                             >
                             조회하기

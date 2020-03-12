@@ -1,12 +1,13 @@
+import React, { useEffect, useState } from 'react';
+
 import main from 'lib/image/main_black.png';
-import React, { useEffect } from 'react';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import TextField from '@material-ui/core/TextField';
 import { yellow } from '@material-ui/core/colors';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -58,11 +59,38 @@ createStyles({
 );
 
 export default function ApplyPage() {
+    const classes = useStyles();
+    const [state, setState] = React.useState<{ field: string; major: string; grade: string; classNum: string; studentNum: string;}>({
+        field: '',
+        major: '',
+        grade: '',
+        classNum: '',
+        studentNum: ''
+    });
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [content, setContent] = useState('');
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+    const handleChange = (name: keyof typeof state) => (
+        event: React.ChangeEvent<{ value: unknown }>,
+    ) => {
+        setState({
+            ...state,
+            [name]: event.target.value,
+        });
+    };
     
-useEffect(() => {
-    document.title = "SSR-지원하기";
-});
-const classes = useStyles();
+    useEffect(() => {
+        document.title = "SSR-지원하기";
+        if (name.trim() && email.trim() && password.trim() && content.trim() && state.field.trim() && state.major.trim() && state.grade.trim() && state.classNum.trim() && state.studentNum.trim()) {
+            setIsButtonDisabled(false);
+        } else {
+            setIsButtonDisabled(true);
+        }
+    }, [name, email, password, content, state]);
+    
     return(
         <React.Fragment>
             <form className={classes.Container} name="apply" action="값을 보낼 주소" method="post">
@@ -78,7 +106,8 @@ const classes = useStyles();
                             <Select
                                 labelId="field"
                                 id="field"
-                            >
+                                value={state.field}
+                                onChange={handleChange('field')}>
                                 <MenuItem value="Forensic">Forensic</MenuItem>
                                 <MenuItem value="Pwnable">Pwnable</MenuItem>
                                 <MenuItem value="Web Hacking">Web Hacking</MenuItem>
@@ -88,24 +117,26 @@ const classes = useStyles();
                             </Select>
                         </FormControl>
                         <FormControl className={classes.formControl} fullWidth>
-                            <InputLabel id="gradeLabel">학년 선택</InputLabel>
-                            <Select
-                                labelId="grade"
-                                id="grade"
-                            >
-                                <MenuItem value="1">1학년</MenuItem>
-                                <MenuItem value="2">2학년</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <FormControl className={classes.formControl} fullWidth>
                             <InputLabel id="majorLabel">학과 선택</InputLabel>
                             <Select
                                 labelId="major"
                                 id="major"
-                            >
+                                value={state.major}
+                                onChange={handleChange('major')}>
                                 <MenuItem value="I">정보보안계열</MenuItem>
                                 <MenuItem value="N">USN보안과</MenuItem>
                                 <MenuItem value="H">해킹보안과</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <FormControl className={classes.formControl} fullWidth>
+                            <InputLabel id="gradeLabel">학년 선택</InputLabel>
+                            <Select
+                                labelId="grade"
+                                id="grade"
+                                value={state.grade}
+                                onChange={handleChange('grade')}>
+                                <MenuItem value="1">1학년</MenuItem>
+                                <MenuItem value="2">2학년</MenuItem>
                             </Select>
                         </FormControl>
                         <FormControl className={classes.formControl} fullWidth>
@@ -113,7 +144,8 @@ const classes = useStyles();
                             <Select
                                 labelId="classNum"
                                 id="classNum"
-                            >
+                                value={state.classNum}
+                                onChange={handleChange('classNum')}>
                                 <MenuItem value="1">1반</MenuItem>
                                 <MenuItem value="2">2반</MenuItem>
                                 <MenuItem value="3">3반</MenuItem>
@@ -125,7 +157,8 @@ const classes = useStyles();
                             <Select
                                 labelId="studentNum"
                                 id="studentNum"
-                            >
+                                value={state.studentNum}
+                                onChange={handleChange('studentNum')}>
                                 <MenuItem value="1">1번</MenuItem>
                                 <MenuItem value="2">2번</MenuItem>
                                 <MenuItem value="3">3번</MenuItem>
@@ -161,21 +194,21 @@ const classes = useStyles();
                                 type="name"
                                 margin="normal" 
                                 label="이름"
-                            />
+                                onChange={(e)=>setName(e.target.value)}/>
                             <TextField 
                                 id="emailInput" 
                                 fullWidth
                                 type="email"
                                 margin="normal" 
                                 label="이메일"
-                            />
+                                onChange={(e)=>setEmail(e.target.value)}/>
                             <TextField
                                 id="passworldInput" 
                                 fullWidth 
                                 type="password" 
                                 margin="normal"
                                 label="비밀번호"
-                            />
+                                onChange={(e)=>setPassword(e.target.value)}/>
                             <TextField
                                 id="contentInput" 
                                 fullWidth 
@@ -186,8 +219,8 @@ const classes = useStyles();
                                 rowsMax="20"
                                 label="자기소개"
                                 placeholder="자기소개는 자유양식 입니다."
-                            />
-                            <span id="countNumber">0/500</span>
+                                onChange={(e)=>setContent(e.target.value)}/>
+                            <div><output id="countNumber">{content.length}</output>/500</div>
                         </div>
                     </CardContent>
                         
@@ -198,7 +231,7 @@ const classes = useStyles();
                             type="submit" 
                             fullWidth
                             size="large"
-                            >
+                            disabled={isButtonDisabled}>
                             지원하기
                         </Button>
                     </CardActions>
