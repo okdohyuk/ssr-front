@@ -1,1 +1,1 @@
-export { default } from './check.component';
+export { default } from './check.page';

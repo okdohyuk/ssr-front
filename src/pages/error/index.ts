@@ -1,1 +1,1 @@
-export { default } from './error.componenet';
+export { default } from './error.page';

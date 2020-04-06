@@ -1,9 +1,17 @@
 import React from 'react';
 
+import background from 'lib/image/background_5.png';
 import apply from 'lib/image/apply.png';
 import kakao from 'lib/image/kakao.png';
 import facebook from 'lib/image/facebook.png';
 import styled from 'styled-components';
+
+const Section = styled.div`
+    background-color: #ffffff;
+    background-image: url(${background});
+    background-repeat: no-repeat;
+    background-size: cover;
+`;
 
 const Title = styled.h1`
     color: #FFE600;
@@ -40,14 +48,16 @@ const MoveImg = styled.img`
 
 export default function Contact() {
     return(
-        <div className="section">
+        <Section className="section">
             <Title>CONTACT</Title>
             <Text>SSR-과 함께하고 싶으신가요?</Text>
-            <div className="move">
-                <a href="#ssr"><MoveImg src={apply} alt={apply} /></a>
-                <a target="_blank" rel='noreferrer noopener' href="https://www.kakaocorp.com/service/KakaoTalk"><MoveImg src={kakao} alt={kakao} /></a>
-                <a target="_blank" rel='noreferrer noopener' href="https://www.facebook.com/hanseiSSR"><MoveImg src={facebook} alt={facebook} /></a>
-            </div>
-        </div>
+            <a href="#ssr"><MoveImg src={apply} alt={apply} /></a>
+            <a target="_blank" rel='noreferrer noopener' href="https://www.kakaocorp.com/service/KakaoTalk">
+                <MoveImg src={kakao} alt={kakao} />
+            </a>
+            <a target="_blank" rel='noreferrer noopener' href="https://www.facebook.com/hanseiSSR">
+                <MoveImg src={facebook} alt={facebook} />
+            </a>
+        </Section>
     );
 }

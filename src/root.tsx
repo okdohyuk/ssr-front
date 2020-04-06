@@ -1,4 +1,4 @@
-import App from './pages/App';
+import App from './components/App';
 import React from 'react';
 import { BrowserRouter } from "react-router-dom";
 

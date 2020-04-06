@@ -1,1 +1,1 @@
-export { default } from './apply.component';
+export { default } from './apply.page';

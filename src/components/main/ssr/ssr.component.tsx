@@ -1,17 +1,18 @@
 import React from 'react';
 
-import background from 'lib/image/background.png';
+import background from 'lib/image/background_1.png';
 import main from 'lib/image/main.png';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Section = styled.div`
+const Section = styled.div `
+    background-color: #ffffff;
     background-image: url(${background});
     background-repeat: no-repeat;
     background-size: cover;
 `;
 
-const SSRImg = styled.img`
+const Img = styled.img `
     height: 260px;
 
     @media screen and (max-device-width: 630px){
@@ -20,7 +21,9 @@ const SSRImg = styled.img`
     }
 `;
 
-const Button = styled.button`
+const LinkWrap = styled.div ``;
+
+const Button = styled.button `
     margin: 30px;
     padding: 10px;
     border: none;
@@ -30,20 +33,18 @@ const Button = styled.button`
     font-size: 20px;
 `;
 
-
-
-class SSR extends React.Component {
-render(){
-    return(
+export default function SSR() {
+    return (
         <Section className="section">
-            <SSRImg src={main} alt={main} />
-            <div>
-                <Link to="/apply"><Button>지원서 작성하기</Button></Link>
-                <Link to="/check"><Button>지원서 수정하기</Button></Link>
-            </div>
+            <Img src={main} alt={main}/>
+            <LinkWrap>
+                <Link to="/apply">
+                    <Button>지원서 작성하기</Button>
+                </Link>
+                <Link to="/check">
+                    <Button>지원서 수정하기</Button>
+                </Link>
+            </LinkWrap>
         </Section>
     );
 }
-}
-
-export default SSR;

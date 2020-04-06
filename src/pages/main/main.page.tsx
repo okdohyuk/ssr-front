@@ -1,17 +1,15 @@
 import React from 'react';
 
-import Navigation from 'pages/fullpage/navigation';
-import SSR from 'pages/fullpage/ssr';
-import About from 'pages/fullpage/about';
-import Members from 'pages/fullpage/members';
-import Product from 'pages/fullpage/product';
-import Benefit from 'pages/fullpage/benefit';
-import Contact from 'pages/fullpage/contact';
+import Navigation from 'components/main/navigation';
+import SSR from 'components/main/ssr';
+import About from 'components/main/about';
+import Members from 'components/main/members';
+import Product from 'components/main/product';
+import Benefit from 'components/main/benefit';
+import Contact from 'components/main/contact';
 import ReactFullpage from '@fullpage/react-fullpage';
 
-
 const fullpageOptions = {
-    sectionsColor: ['#FFF', '#90827D', '#90827D', '#7C8C89', '#72789D', '#929292'],
     anchors: [
         'ssr',
         'about',
@@ -25,19 +23,18 @@ const fullpageOptions = {
     responsiveWidth: 600,
     fitToSection: false,
     dragAndMove: true,
-    slidesNavigation: true,
+    slidesNavigation: true
 };
 
-export default function HomePage() {
+export default function MainPage() {
     return (
         <React.Fragment>
             <Navigation/>
             <ReactFullpage
                 {...fullpageOptions}
-                render={({state, fullpageApi}: any) => {
+                render={({state, fullpageApi} : any) => {
                     return (
                         <ReactFullpage.Wrapper>
-
                             <SSR/>
                             <About/>
                             <Members/>
