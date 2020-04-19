@@ -1,16 +1,15 @@
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }
 
 html,
 body {
-    width: 100%;
-    height: 100%;
-    background-color: #595959;
+  width: 100%;
+  height: 100%;
+  background-color: #595959;
 }
-
 
 html,
 h1,
@@ -19,27 +18,27 @@ h3,
 span,
 li,
 button {
-    font: {
-        family: Arial;
-        font-style: normal;
-    }
+  font: {
+    family: Arial;
+    font-style: normal;
+  }
 }
 
 .section {
-    text-align: center;
+  text-align: center;
 }
 
 .fp-controlArrow {
-    @media screen and (max-device-width: 830px){
-        display: none;
-    }
+  @media screen and (max-device-width: 830px) {
+    display: none;
+  }
 }
 
 .active a {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-#fp-nav ul li a span, 
+#fp-nav ul li a span,
 .fp-slidesNav ul li a span {
-    background: #FFFFFF !important;
+  background: #ffffff !important;
 }

@@ -1,7 +1,9 @@
 import React from 'react';
+import styled from 'styled-components';
 
-import ErrorComponent from 'components/error'
+const Title = styled.h1``;
 
-export default function ErrorPage() {
-    return <ErrorComponent />
-}
+export default () => {
+  document.title = 'SSR-Error';
+  return <Title>404 Not Found</Title>;
+};
