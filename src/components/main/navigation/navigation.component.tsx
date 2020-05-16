@@ -53,7 +53,7 @@ const NavBut = styled.a`
   font-size: 26px;
 `;
 
-export default function Navigation() {
+export default () => {
   return (
     <Header>
       <Logo>
@@ -79,4 +79,4 @@ export default function Navigation() {
       </Nav>
     </Header>
   );
-}
+};

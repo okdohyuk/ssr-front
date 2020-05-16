@@ -67,7 +67,7 @@ const Img = styled.img`
   }
 `;
 
-export default function Benefit() {
+export default () => {
   return (
     <BG className="section">
       <Slide className="slide" data-anchor="slide1">
@@ -107,4 +107,4 @@ export default function Benefit() {
       </Slide>
     </BG>
   );
-}
+};

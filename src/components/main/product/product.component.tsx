@@ -125,7 +125,7 @@ const ProductText = styled.div`
   }
 `;
 
-export default function Product() {
+export default () => {
   const [content, setContent] = useState(true);
   return (
     <BG className="section">
@@ -193,4 +193,4 @@ export default function Product() {
       </Content>
     </BG>
   );
-}
+};

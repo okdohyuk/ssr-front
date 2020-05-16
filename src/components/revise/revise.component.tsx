@@ -101,12 +101,12 @@ const SelStudentNum = styled(Select)``;
 const InputContent = styled(TextField)``;
 
 export interface FormData {
+  pk: number;
   phone: string;
-  classNum?: number;
-  studentNum?: number;
+  classNum: number;
+  studentNum: number;
   name: string;
   field:
-    | ''
     | 'Forensic'
     | 'Pwnable'
     | 'Web Hacking'
@@ -117,15 +117,26 @@ export interface FormData {
   password: string;
 }
 
-export default function ApplyComponent() {
-  document.title = 'SSR 지원하기';
+export default function ReviseComponent({
+  pk,
+  phone,
+  classNum,
+  studentNum,
+  name,
+  field,
+  content,
+  password,
+}: FormData) {
+  document.title = 'SSR 수정하기';
   const [state, setState] = useState<FormData>({
-    phone: '',
-
-    name: '',
-    field: '',
-    content: '',
-    password: '',
+    pk: pk,
+    phone: phone,
+    classNum: classNum,
+    studentNum: studentNum,
+    name: name,
+    field: field,
+    content: content,
+    password: password,
   });
 
   const handleChange = (name: keyof typeof state) => (
@@ -142,22 +153,23 @@ export default function ApplyComponent() {
   const handleSubmit = (sub: boolean) => {
     if (
       state.phone.trim() &&
-      state.classNum !== undefined &&
-      state.studentNum !== undefined &&
+      state.classNum !== 0 &&
+      state.studentNum !== 0 &&
       state.name.trim() &&
       state.field.trim() &&
       state.content.trim() &&
       state.password.trim()
     ) {
-      post(sub);
+      patch(sub);
     } else {
       alert('빈칸을 모두 채워주세요.');
     }
   };
 
-  const post = (sub: boolean) => {
+  const patch = (sub: boolean) => {
     axios
-      .post('/api/application/post', {
+      .patch('/api/application/patch', {
+        pk: state.pk,
         phone: state.phone,
         classNum: state.classNum,
         studentNum: state.studentNum,
@@ -178,7 +190,7 @@ export default function ApplyComponent() {
     } else {
       alert('지원서 저장이 완료되었습니다!');
     }
-    //  window.location.href = '/';
+    window.location.href = '/';
   };
 
   return (
@@ -242,11 +254,11 @@ export default function ApplyComponent() {
                   value={state.classNum}
                   onChange={handleChange('classNum')}
                 >
-                  <MenuItem value={1}>게임 1반</MenuItem>
-                  <MenuItem value={2}>정보보안 1반</MenuItem>
-                  <MenuItem value={3}>정보보안 2반</MenuItem>
-                  <MenuItem value={4}>정보보안 3반</MenuItem>
-                  <MenuItem value={5}>정보보안 4반</MenuItem>
+                  <MenuItem value="1">게임 1반</MenuItem>
+                  <MenuItem value="2">정보보안 1반</MenuItem>
+                  <MenuItem value="3">정보보안 2반</MenuItem>
+                  <MenuItem value="4">정보보안 3반</MenuItem>
+                  <MenuItem value="5">정보보안 4반</MenuItem>
                 </SelClassNum>
               </InputWrap>
               <InputWrapR>
@@ -255,26 +267,26 @@ export default function ApplyComponent() {
                   value={state.studentNum}
                   onChange={handleChange('studentNum')}
                 >
-                  <MenuItem value={1}>1번</MenuItem>
-                  <MenuItem value={2}>2번</MenuItem>
-                  <MenuItem value={3}>3번</MenuItem>
-                  <MenuItem value={4}>4번</MenuItem>
-                  <MenuItem value={5}>5번</MenuItem>
-                  <MenuItem value={6}>6번</MenuItem>
-                  <MenuItem value={7}>7번</MenuItem>
-                  <MenuItem value={8}>8번</MenuItem>
-                  <MenuItem value={9}>9번</MenuItem>
-                  <MenuItem value={10}>10번</MenuItem>
-                  <MenuItem value={11}>11번</MenuItem>
-                  <MenuItem value={12}>12번</MenuItem>
-                  <MenuItem value={13}>13번</MenuItem>
-                  <MenuItem value={14}>14번</MenuItem>
-                  <MenuItem value={15}>15번</MenuItem>
-                  <MenuItem value={16}>16번</MenuItem>
-                  <MenuItem value={17}>17번</MenuItem>
-                  <MenuItem value={18}>18번</MenuItem>
-                  <MenuItem value={19}>19번</MenuItem>
-                  <MenuItem value={20}>20번</MenuItem>
+                  <MenuItem value="1">1번</MenuItem>
+                  <MenuItem value="2">2번</MenuItem>
+                  <MenuItem value="3">3번</MenuItem>
+                  <MenuItem value="4">4번</MenuItem>
+                  <MenuItem value="5">5번</MenuItem>
+                  <MenuItem value="6">6번</MenuItem>
+                  <MenuItem value="7">7번</MenuItem>
+                  <MenuItem value="8">8번</MenuItem>
+                  <MenuItem value="9">9번</MenuItem>
+                  <MenuItem value="10">10번</MenuItem>
+                  <MenuItem value="11">11번</MenuItem>
+                  <MenuItem value="12">12번</MenuItem>
+                  <MenuItem value="13">13번</MenuItem>
+                  <MenuItem value="14">14번</MenuItem>
+                  <MenuItem value="15">15번</MenuItem>
+                  <MenuItem value="16">16번</MenuItem>
+                  <MenuItem value="17">17번</MenuItem>
+                  <MenuItem value="18">18번</MenuItem>
+                  <MenuItem value="19">19번</MenuItem>
+                  <MenuItem value="20">20번</MenuItem>
                 </SelStudentNum>
               </InputWrapR>
             </Field>

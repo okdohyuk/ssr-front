@@ -39,7 +39,7 @@ const Contents = styled.span`
   }
 `;
 
-export default function About() {
+export default () => {
   return (
     <BG className="section">
       <Slide className="slide" data-anchor="slide1">
@@ -70,4 +70,4 @@ export default function About() {
       </Slide>
     </BG>
   );
-}
+};

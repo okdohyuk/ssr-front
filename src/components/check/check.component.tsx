@@ -1,20 +1,18 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
-import main from 'lib/image/main.png';
-import Button from '@material-ui/core/Button';
-
+//import RevisePage from 'pages/revise';
 import { withStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { yellow } from '@material-ui/core/colors';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
+import Button from '@material-ui/core/Button';
+import main from 'lib/image/main.png';
 import styled from 'styled-components';
 
 const Form = styled.form`
   width: 100%;
-  height: 100%;
   text-align: center;
   padding: 15px;
 `;
@@ -51,12 +49,14 @@ const SubBtn = withStyles((theme: Theme) => ({
   },
 }))(Button);
 
+export interface FormData {
+  phone: string;
+  password: string;
+}
+
 export default function CheckComponent() {
   document.title = 'SSR 조회하기';
-  const [state, setState] = useState<{
-    phone: string;
-    password: string;
-  }>({ phone: '', password: '' });
+  const [state, setState] = useState<FormData>({ phone: '', password: '' });
 
   const handleChange = (name: keyof typeof state) => (
     event: React.ChangeEvent<{
@@ -71,15 +71,15 @@ export default function CheckComponent() {
 
   const handleSubmit = () => {
     if (state.phone.trim() && state.password.trim()) {
-      post();
+      load();
     } else {
       alert('빈칸을 모두 채워주세요.');
     }
   };
 
-  const post = () => {
+  const load = () => {
     axios
-      .post('/load', {
+      .post('/api/application/load', {
         phone: state.phone,
         password: state.password,
       })
@@ -92,7 +92,7 @@ export default function CheckComponent() {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form>
       <CardHeader>
         <Img src={main} alt={main} />
       </CardHeader>
@@ -117,7 +117,12 @@ export default function CheckComponent() {
           </InputWrap>
         </CardContent>
         <CardActions>
-          <SubBtn variant="contained" type="submit" fullWidth size="large">
+          <SubBtn
+            variant="contained"
+            onClick={handleSubmit}
+            fullWidth
+            size="large"
+          >
             조회하기
           </SubBtn>
         </CardActions>
