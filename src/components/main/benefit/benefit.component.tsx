@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import background from 'lib/image/background_4.png';
 import club from 'lib/image/club.png';
+import club2 from 'lib/image/club_2.png';
 
 const BG = styled.div`
   background-color: #ffffff;
@@ -78,7 +79,7 @@ export default () => {
             <br />
             동아리 분위기!
           </Text>
-          <Img src={club} alt={club} />
+          <Img src={club2} alt={club2} />
         </Contents>
       </Slide>
 

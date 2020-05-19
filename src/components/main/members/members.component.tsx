@@ -3,11 +3,17 @@ import styled from 'styled-components';
 import background from 'lib/image/background_2.png';
 import bin from 'lib/profile/profile_bin.png';
 import back from 'lib/profile/profile_back.png';
-import gyu from 'lib/profile/profile_gyu.png';
 import you from 'lib/profile/profile_you.png';
 import cha from 'lib/profile/profile_cha.png';
 import oh from 'lib/profile/profile_oh.png';
 import kim from 'lib/profile/profile_kim.png';
+import kimbo from 'lib/profile/profile_kimbo.png';
+import jo from 'lib/profile/profile_jo.png';
+import lee from 'lib/profile/profile_lee.png';
+import yun from 'lib/profile/profile_yun.png';
+import seon from 'lib/profile/profile_seon.png';
+import min from 'lib/profile/profile_min.png';
+import pak from 'lib/profile/profile_pak.png';
 
 const Section = styled.div`
   background-color: #ffffff;
@@ -86,22 +92,24 @@ export default () => {
               <Field>차장, 서버 개발</Field>
             </Profile>
             <Profile>
-              <Img src={gyu} alt={gyu} />
+              <Img src={kimbo} alt={kimbo} />
               <Name>김보민</Name>
-              <Field>수능 공부</Field>
+              <Field>
+                수능준비중 +<br /> 자칭 한예슬
+              </Field>
             </Profile>
             <Profile>
-              <Img src={gyu} alt={gyu} />
+              <Img src={min} alt={min} />
               <Name>김성민</Name>
               <Field>웹 프론트</Field>
             </Profile>
             <Profile>
-              <Img src={gyu} alt={gyu} />
+              <Img src={seon} alt={seon} />
               <Name>이규선</Name>
               <Field>서버 개발</Field>
             </Profile>
             <Profile>
-              <Img src={gyu} alt={gyu} />
+              <Img src={yun} alt={yun} />
               <Name>윤영서</Name>
               <Field>웹 해킹</Field>
             </Profile>
@@ -123,7 +131,7 @@ export default () => {
               <Field>차장, 웹 해킹</Field>
             </Profile>
             <Profile>
-              <Img src={gyu} alt={gyu} />
+              <Img src={lee} alt={lee} />
               <Name>이현서</Name>
               <Field>앱 개발</Field>
             </Profile>
@@ -133,12 +141,12 @@ export default () => {
               <Field>웹 프론트</Field>
             </Profile>
             <Profile>
-              <Img src={gyu} alt={gyu} />
+              <Img src={pak} alt={pak} />
               <Name>박준상</Name>
               <Field>서버 개발</Field>
             </Profile>
             <Profile>
-              <Img src={gyu} alt={gyu} />
+              <Img src={jo} alt={jo} />
               <Name>조영환</Name>
               <Field>앱 개발</Field>
             </Profile>

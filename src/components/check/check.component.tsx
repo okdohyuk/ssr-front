@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-//import RevisePage from 'pages/revise';
+
 import { withStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { yellow } from '@material-ui/core/colors';
@@ -10,6 +10,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import main from 'lib/image/main.png';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 const Form = styled.form`
   width: 100%;
@@ -41,6 +42,7 @@ const SubBtn = withStyles((theme: Theme) => ({
   root: {
     color: theme.palette.getContrastText(yellow[500]),
     backgroundColor: yellow[500],
+    borderRadius: 0,
     fontSize: '20px',
     fontWeight: 'bolder',
     '&:hover': {
@@ -56,8 +58,8 @@ export interface FormData {
 
 export default function CheckComponent() {
   document.title = 'SSR 조회하기';
+  let history = useHistory();
   const [state, setState] = useState<FormData>({ phone: '', password: '' });
-
   const handleChange = (name: keyof typeof state) => (
     event: React.ChangeEvent<{
       value: unknown;
@@ -69,7 +71,8 @@ export default function CheckComponent() {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
     if (state.phone.trim() && state.password.trim()) {
       load();
     } else {
@@ -84,15 +87,34 @@ export default function CheckComponent() {
         password: state.password,
       })
       .then(function (response) {
-        console.log(response);
+        console.log(response.data.data.application);
+        const Data = response.data.data.application;
+        return history.push(
+          `/revise/${Data.pk}/${Data.phone}/${Data.classNum}/${Data.studentNum}/${Data.name}/${Data.field}/${Data.content}`,
+        );
       })
       .catch(function (error) {
-        console.log(error);
+        if (error.response) {
+          // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+          alert(error.response.data.message);
+        } else if (error.request) {
+          // 요청이 이루어 졌으나 응답을 받지 못했습니다.
+          // `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
+          // Node.js의 http.ClientRequest 인스턴스입니다.
+          console.log(error.request);
+        } else {
+          // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
+          console.log('Error', error.message);
+        }
+        console.log(error.config);
       });
   };
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <CardHeader>
         <Img src={main} alt={main} />
       </CardHeader>
@@ -117,12 +139,7 @@ export default function CheckComponent() {
           </InputWrap>
         </CardContent>
         <CardActions>
-          <SubBtn
-            variant="contained"
-            onClick={handleSubmit}
-            fullWidth
-            size="large"
-          >
+          <SubBtn variant="contained" type="submit" fullWidth size="large">
             조회하기
           </SubBtn>
         </CardActions>

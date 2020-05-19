@@ -14,7 +14,7 @@ const fullpageOptions = {
   menu: '#myMenu',
   responsiveWidth: 600,
   fitToSection: false,
-  dragAndMove: true,
+  dragAndMove: 'fingersonly',
   slidesNavigation: true,
 };
 

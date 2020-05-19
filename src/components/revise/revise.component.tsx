@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
@@ -100,43 +101,57 @@ const SelStudentNum = styled(Select)``;
 
 const InputContent = styled(TextField)``;
 
-export interface FormData {
+interface MatchParams {
+  pk: string;
+  phone: string;
+  classNum: string;
+  studentNum: string;
+  name: string;
+  field:
+    | ''
+    | 'Forensic'
+    | 'Pwnable'
+    | 'Web Hacking'
+    | 'Web FrontEnd Development'
+    | 'BackEnd Development'
+    | 'App Development'
+    | 'Reversing';
+  content: string;
+  password?: string;
+}
+
+interface FormData {
   pk: number;
   phone: string;
   classNum: number;
   studentNum: number;
   name: string;
   field:
+    | ''
     | 'Forensic'
     | 'Pwnable'
     | 'Web Hacking'
-    | 'Web FrontEnb Development'
+    | 'Web FrontEnd Development'
     | 'BackEnd Development'
-    | 'App Development';
+    | 'App Development'
+    | 'Reversing';
   content: string;
-  password: string;
+  password?: string;
 }
 
-export default function ReviseComponent({
-  pk,
-  phone,
-  classNum,
-  studentNum,
-  name,
-  field,
-  content,
-  password,
-}: FormData) {
-  document.title = 'SSR 수정하기';
+const ReviseComponent: React.SFC<RouteComponentProps<MatchParams>> = ({
+  match,
+}) => {
+  document.title = 'SSR 지원서 수정하기';
   const [state, setState] = useState<FormData>({
-    pk: pk,
-    phone: phone,
-    classNum: classNum,
-    studentNum: studentNum,
-    name: name,
-    field: field,
-    content: content,
-    password: password,
+    pk: Number(match.params.pk),
+    phone: match.params.phone,
+    classNum: Number(match.params.classNum),
+    studentNum: Number(match.params.studentNum),
+    name: match.params.name,
+    field: match.params.field,
+    content: match.params.content,
+    password: '',
   });
 
   const handleChange = (name: keyof typeof state) => (
@@ -153,12 +168,10 @@ export default function ReviseComponent({
   const handleSubmit = (sub: boolean) => {
     if (
       state.phone.trim() &&
-      state.classNum !== 0 &&
-      state.studentNum !== 0 &&
       state.name.trim() &&
       state.field.trim() &&
       state.content.trim() &&
-      state.password.trim()
+      state.password !== ''
     ) {
       patch(sub);
     } else {
@@ -168,7 +181,7 @@ export default function ReviseComponent({
 
   const patch = (sub: boolean) => {
     axios
-      .patch('/api/application/patch', {
+      .patch('/api/application', {
         pk: state.pk,
         phone: state.phone,
         classNum: state.classNum,
@@ -181,16 +194,31 @@ export default function ReviseComponent({
       })
       .then(function (response) {
         console.log(response);
+        if (sub) {
+          alert('지원서 등록이 완료되었습니다!');
+        } else {
+          alert('지원서 저장이 완료되었습니다!');
+        }
+        //  window.location.href = '/';
       })
       .catch(function (error) {
-        console.log(error);
+        if (error.response) {
+          // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+          alert(error.response.data.message);
+        } else if (error.request) {
+          // 요청이 이루어 졌으나 응답을 받지 못했습니다.
+          // `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
+          // Node.js의 http.ClientRequest 인스턴스입니다.
+          console.log(error.request);
+        } else {
+          // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
+          console.log('Error', error.message);
+        }
+        console.log(error.config);
       });
-    if (sub) {
-      alert('지원서 등록이 완료되었습니다!');
-    } else {
-      alert('지원서 저장이 완료되었습니다!');
-    }
-    window.location.href = '/';
   };
 
   return (
@@ -206,6 +234,7 @@ export default function ReviseComponent({
             <InputWrap>
               <InputPhone
                 label="전화번호"
+                placeholder="01012345678"
                 value={state.phone}
                 onChange={handleChange('phone')}
               />
@@ -213,6 +242,7 @@ export default function ReviseComponent({
             <InputWrapR>
               <InputPw
                 label="비밀번호"
+                placeholder="8자 이상 대소특수문자 하나이상"
                 type="password"
                 value={state.password}
                 onChange={handleChange('password')}
@@ -254,11 +284,11 @@ export default function ReviseComponent({
                   value={state.classNum}
                   onChange={handleChange('classNum')}
                 >
-                  <MenuItem value="1">게임 1반</MenuItem>
-                  <MenuItem value="2">정보보안 1반</MenuItem>
-                  <MenuItem value="3">정보보안 2반</MenuItem>
-                  <MenuItem value="4">정보보안 3반</MenuItem>
-                  <MenuItem value="5">정보보안 4반</MenuItem>
+                  <MenuItem value={1}>게임 1반</MenuItem>
+                  <MenuItem value={2}>정보보안 1반</MenuItem>
+                  <MenuItem value={3}>정보보안 2반</MenuItem>
+                  <MenuItem value={4}>정보보안 3반</MenuItem>
+                  <MenuItem value={5}>정보보안 4반</MenuItem>
                 </SelClassNum>
               </InputWrap>
               <InputWrapR>
@@ -267,26 +297,26 @@ export default function ReviseComponent({
                   value={state.studentNum}
                   onChange={handleChange('studentNum')}
                 >
-                  <MenuItem value="1">1번</MenuItem>
-                  <MenuItem value="2">2번</MenuItem>
-                  <MenuItem value="3">3번</MenuItem>
-                  <MenuItem value="4">4번</MenuItem>
-                  <MenuItem value="5">5번</MenuItem>
-                  <MenuItem value="6">6번</MenuItem>
-                  <MenuItem value="7">7번</MenuItem>
-                  <MenuItem value="8">8번</MenuItem>
-                  <MenuItem value="9">9번</MenuItem>
-                  <MenuItem value="10">10번</MenuItem>
-                  <MenuItem value="11">11번</MenuItem>
-                  <MenuItem value="12">12번</MenuItem>
-                  <MenuItem value="13">13번</MenuItem>
-                  <MenuItem value="14">14번</MenuItem>
-                  <MenuItem value="15">15번</MenuItem>
-                  <MenuItem value="16">16번</MenuItem>
-                  <MenuItem value="17">17번</MenuItem>
-                  <MenuItem value="18">18번</MenuItem>
-                  <MenuItem value="19">19번</MenuItem>
-                  <MenuItem value="20">20번</MenuItem>
+                  <MenuItem value={1}>1번</MenuItem>
+                  <MenuItem value={2}>2번</MenuItem>
+                  <MenuItem value={3}>3번</MenuItem>
+                  <MenuItem value={4}>4번</MenuItem>
+                  <MenuItem value={5}>5번</MenuItem>
+                  <MenuItem value={6}>6번</MenuItem>
+                  <MenuItem value={7}>7번</MenuItem>
+                  <MenuItem value={8}>8번</MenuItem>
+                  <MenuItem value={9}>9번</MenuItem>
+                  <MenuItem value={10}>10번</MenuItem>
+                  <MenuItem value={11}>11번</MenuItem>
+                  <MenuItem value={12}>12번</MenuItem>
+                  <MenuItem value={13}>13번</MenuItem>
+                  <MenuItem value={14}>14번</MenuItem>
+                  <MenuItem value={15}>15번</MenuItem>
+                  <MenuItem value={16}>16번</MenuItem>
+                  <MenuItem value={17}>17번</MenuItem>
+                  <MenuItem value={18}>18번</MenuItem>
+                  <MenuItem value={19}>19번</MenuItem>
+                  <MenuItem value={20}>20번</MenuItem>
                 </SelStudentNum>
               </InputWrapR>
             </Field>
@@ -325,4 +355,6 @@ export default function ReviseComponent({
       </CardMain>
     </Form>
   );
-}
+};
+
+export default withRouter(ReviseComponent);

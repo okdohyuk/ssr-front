@@ -102,17 +102,18 @@ const InputContent = styled(TextField)``;
 
 export interface FormData {
   phone: string;
-  classNum?: number;
-  studentNum?: number;
+  classNum: string;
+  studentNum: string;
   name: string;
   field:
     | ''
     | 'Forensic'
     | 'Pwnable'
     | 'Web Hacking'
-    | 'Web FrontEnb Development'
+    | 'Web FrontEnd Development'
     | 'BackEnd Development'
-    | 'App Development';
+    | 'App Development'
+    | 'Reversing';
   content: string;
   password: string;
 }
@@ -121,7 +122,8 @@ export default function ApplyComponent() {
   document.title = 'SSR 지원하기';
   const [state, setState] = useState<FormData>({
     phone: '',
-
+    classNum: '',
+    studentNum: '',
     name: '',
     field: '',
     content: '',
@@ -142,8 +144,8 @@ export default function ApplyComponent() {
   const handleSubmit = (sub: boolean) => {
     if (
       state.phone.trim() &&
-      state.classNum !== undefined &&
-      state.studentNum !== undefined &&
+      state.classNum !== '' &&
+      state.studentNum !== '' &&
       state.name.trim() &&
       state.field.trim() &&
       state.content.trim() &&
@@ -157,7 +159,7 @@ export default function ApplyComponent() {
 
   const post = (sub: boolean) => {
     axios
-      .post('/api/application/post', {
+      .post('/api/application', {
         phone: state.phone,
         classNum: state.classNum,
         studentNum: state.studentNum,
@@ -169,16 +171,31 @@ export default function ApplyComponent() {
       })
       .then(function (response) {
         console.log(response);
+        if (sub) {
+          alert('지원서 등록이 완료되었습니다!');
+        } else {
+          alert('지원서 저장이 완료되었습니다!');
+        }
+        //  window.location.href = '/';
       })
       .catch(function (error) {
-        console.log(error);
+        if (error.response) {
+          // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+          alert(error.response.data.message);
+        } else if (error.request) {
+          // 요청이 이루어 졌으나 응답을 받지 못했습니다.
+          // `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
+          // Node.js의 http.ClientRequest 인스턴스입니다.
+          console.log(error.request);
+        } else {
+          // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
+          console.log('Error', error.message);
+        }
+        console.log(error.config);
       });
-    if (sub) {
-      alert('지원서 등록이 완료되었습니다!');
-    } else {
-      alert('지원서 저장이 완료되었습니다!');
-    }
-    //  window.location.href = '/';
   };
 
   return (
@@ -194,6 +211,7 @@ export default function ApplyComponent() {
             <InputWrap>
               <InputPhone
                 label="전화번호"
+                placeholder="01012345678"
                 value={state.phone}
                 onChange={handleChange('phone')}
               />
@@ -201,6 +219,7 @@ export default function ApplyComponent() {
             <InputWrapR>
               <InputPw
                 label="비밀번호"
+                placeholder="8자 이상 대소특수문자 하나이상"
                 type="password"
                 value={state.password}
                 onChange={handleChange('password')}
