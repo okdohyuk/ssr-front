@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import background from 'lib/image/background_4.png';
+import background from 'lib/image/background_4.jpg';
 import club from 'lib/image/club.png';
 import club2 from 'lib/image/club_2.png';
 
 const BG = styled.div`
-  background-color: #ffffff;
   background-image: url(${background});
   background-repeat: no-repeat;
   background-size: cover;
@@ -23,7 +22,7 @@ const Title = styled.h1`
   text-shadow: -1px 0 #333333, 0 1px #333333, 1px 0 #333333, 0 -1px #333333;
   font-size: 50px;
 
-  @media screen and (max-device-width: 830px) {
+  @media screen and (max-width: 900px) {
     width: 100%;
     text-align: center;
   }
@@ -35,7 +34,7 @@ const Contents = styled.div`
   display: flex;
   justify-content: center;
 
-  @media screen and (max-device-width: 830px) {
+  @media screen and (max-width: 900px) {
     width: 100%;
     flex-direction: column-reverse;
   }
@@ -48,7 +47,7 @@ const Text = styled.span`
   color: #ffffff;
   font-size: 50px;
 
-  @media screen and (max-device-width: 830px) {
+  @media screen and (max-width: 900px) {
     width: unset;
     margin-top: 20px;
     line-height: 40px;
@@ -61,7 +60,7 @@ const Img = styled.img`
   width: 400px;
   height: 300px;
 
-  @media screen and (max-device-width: 830px) {
+  @media screen and (max-width: 900px) {
     margin: 0 auto;
     width: 300px;
     height: 225px;

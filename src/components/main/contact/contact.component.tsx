@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import background from 'lib/image/background_5.png';
+import background from 'lib/image/background_5.jpg';
 import apply from 'lib/image/apply.png';
 import kakao from 'lib/image/kakao.png';
 import facebook from 'lib/image/facebook.png';
 
 const BG = styled.div`
-  background-color: #ffffff;
   background-image: url(${background});
   background-repeat: no-repeat;
   background-size: cover;

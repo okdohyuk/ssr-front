@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import background from 'lib/image/background_2.png';
+import background from 'lib/image/background_2.jpg';
 
 const BG = styled.div`
-  background-color: #ffffff;
   background-image: url(${background});
   background-repeat: no-repeat;
   background-size: cover;
@@ -17,7 +16,7 @@ const Title = styled.h1`
   line-height: 150px;
   font-size: 100px;
 
-  @media screen and (max-device-width: 830px) {
+  @media screen and (max-width: 900px) {
     font-size: 50px;
     line-height: 100px;
   }
@@ -28,12 +27,12 @@ const Contents = styled.span`
   line-height: 100px;
   color: #ffffff;
 
-  @media screen and (max-device-width: 830px) {
+  @media screen and (max-width: 900px) {
     font-size: 30px;
     line-height: 50px;
   }
 
-  @media screen and (max-device-width: 450px) {
+  @media screen and (max-width: 530px) {
     font-size: 18px;
     line-height: 30px;
   }

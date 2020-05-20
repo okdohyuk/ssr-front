@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import background from 'lib/image/background_2.png';
+import background from 'lib/image/background_2.jpg';
 import bin from 'lib/profile/profile_bin.png';
 import back from 'lib/profile/profile_back.png';
 import you from 'lib/profile/profile_you.png';
@@ -16,11 +16,10 @@ import min from 'lib/profile/profile_min.png';
 import pak from 'lib/profile/profile_pak.png';
 
 const Section = styled.div`
-  background-color: #ffffff;
   background-image: url(${background});
   background-repeat: no-repeat;
   background-size: cover;
-  @media screen and (max-device-width: 830px) {
+  @media screen and (max-width: 600px) {
     height: auto !important;
   }
 `;
@@ -59,10 +58,6 @@ const Profile = styled.div`
   width: 160px;
   margin: 10px 10px 40px 10px;
   color: #ffffff;
-  @media screen and (max-width: 830px) {
-    width: 50%;
-    margin: 0 0 40px 0;
-  }
 `;
 
 const Img = styled.img`

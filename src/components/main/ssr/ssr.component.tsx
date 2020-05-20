@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { withStyles, Theme } from '@material-ui/core/styles';
 import { yellow } from '@material-ui/core/colors';
-import background from 'lib/image/background_1.png';
+import background from 'lib/image/background_1.jpg';
 import main from 'lib/image/main.png';
 import styled from 'styled-components';
 
 const BG = styled.div`
-  background-color: #ffffff;
   background-image: url(${background});
   background-repeat: no-repeat;
   background-size: cover;
