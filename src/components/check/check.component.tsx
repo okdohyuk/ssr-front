@@ -71,12 +71,16 @@ export default function CheckComponent() {
     });
   };
 
+  const [btnabled, setBtnabled] = useState(false);
+
   const handleSubmit = (event: any) => {
     event.preventDefault();
+    setBtnabled(true);
     if (state.phone.trim() && state.password.trim()) {
       load();
     } else {
       alert('빈칸을 모두 채워주세요.');
+      setBtnabled(false);
     }
   };
 
@@ -95,6 +99,7 @@ export default function CheckComponent() {
       .catch(function (error) {
         if (error.response) {
           alert(error.response.data.message);
+          setBtnabled(false);
         }
       });
   };
@@ -125,7 +130,13 @@ export default function CheckComponent() {
           </InputWrap>
         </CardContent>
         <CardActions>
-          <SubBtn variant="contained" type="submit" fullWidth size="large">
+          <SubBtn
+            variant="contained"
+            type="submit"
+            fullWidth
+            size="large"
+            disabled={btnabled}
+          >
             조회하기
           </SubBtn>
         </CardActions>

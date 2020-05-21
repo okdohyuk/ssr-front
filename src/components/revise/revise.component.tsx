@@ -108,7 +108,6 @@ interface MatchParams {
   studentNum: string;
   name: string;
   field:
-    | ''
     | 'Forensic'
     | 'Pwnable'
     | 'Web Hacking'
@@ -127,7 +126,6 @@ interface FormData {
   studentNum: number;
   name: string;
   field:
-    | ''
     | 'Forensic'
     | 'Pwnable'
     | 'Web Hacking'
@@ -153,6 +151,7 @@ const ReviseComponent: React.SFC<RouteComponentProps<MatchParams>> = ({
     content: match.params.content,
     password: '',
   });
+  console.log(state.field);
 
   const handleChange = (name: keyof typeof state) => (
     event: React.ChangeEvent<{
@@ -165,7 +164,10 @@ const ReviseComponent: React.SFC<RouteComponentProps<MatchParams>> = ({
     });
   };
 
+  const [btnabled, setBtnabled] = useState(false);
+
   const handleSubmit = (sub: boolean) => {
+    setBtnabled(true);
     if (
       state.phone.trim() &&
       state.name.trim() &&
@@ -176,6 +178,7 @@ const ReviseComponent: React.SFC<RouteComponentProps<MatchParams>> = ({
       patch(sub);
     } else {
       alert('빈칸을 모두 채워주세요.');
+      setBtnabled(false);
     }
   };
 
@@ -203,6 +206,7 @@ const ReviseComponent: React.SFC<RouteComponentProps<MatchParams>> = ({
       .catch(function (error) {
         if (error.response) {
           alert(error.response.data.message);
+          setBtnabled(false);
         }
       });
   };
@@ -249,17 +253,17 @@ const ReviseComponent: React.SFC<RouteComponentProps<MatchParams>> = ({
               <InputWrapR>
                 <InputLabel>지원 분야</InputLabel>
                 <SelField value={state.field} onChange={handleChange('field')}>
-                  <MenuItem value="Pwnable">Pwn(시스템해킹)</MenuItem>
-                  <MenuItem value="Reversing">Rev(리버싱)</MenuItem>
-                  <MenuItem value="Web Hacking">Web Hacking(웹해킹)</MenuItem>
-                  <MenuItem value="Forensic">Forensic(포렌식)</MenuItem>
-                  <MenuItem value="App Development">App(앱개발)</MenuItem>
-                  <MenuItem value="Web FrontEnd Development">
+                  <MenuItem value={'Forensic'}>Forensic(포렌식)</MenuItem>
+                  <MenuItem value={'Pwnable'}>Pwn(시스템해킹)</MenuItem>
+                  <MenuItem value={'Reversing'}>Rev(리버싱)</MenuItem>
+                  <MenuItem value={'Web Hacking'}>Web Hacking(웹해킹)</MenuItem>
+                  <MenuItem value={'Web FrontEnd Development'}>
                     Web FrontEnd(웹프론트개발)
                   </MenuItem>
-                  <MenuItem value="BackEnd Development">
+                  <MenuItem value={'BackEnd Development'}>
                     Web BackEnd(웹백엔드개발)
                   </MenuItem>
+                  <MenuItem value={'App Development'}>App(앱개발)</MenuItem>
                 </SelField>
               </InputWrapR>
             </Field>
@@ -327,6 +331,7 @@ const ReviseComponent: React.SFC<RouteComponentProps<MatchParams>> = ({
             variant="contained"
             onClick={() => handleSubmit(false)}
             size="large"
+            disabled={btnabled}
           >
             저장하기
           </SaveBtn>
@@ -334,6 +339,7 @@ const ReviseComponent: React.SFC<RouteComponentProps<MatchParams>> = ({
             variant="contained"
             onClick={() => handleSubmit(true)}
             size="large"
+            disabled={btnabled}
           >
             지원하기
           </SubBtn>

@@ -141,7 +141,10 @@ export default function ApplyComponent() {
     });
   };
 
+  const [btnabled, setBtnabled] = useState(false);
+
   const handleSubmit = (sub: boolean) => {
+    setBtnabled(true);
     if (
       state.phone.trim() &&
       state.classNum !== '' &&
@@ -154,6 +157,7 @@ export default function ApplyComponent() {
       post(sub);
     } else {
       alert('빈칸을 모두 채워주세요.');
+      setBtnabled(false);
     }
   };
 
@@ -180,6 +184,7 @@ export default function ApplyComponent() {
       .catch(function (error) {
         if (error.response) {
           alert(error.response.data.message);
+          setBtnabled(false);
         }
       });
   };
@@ -226,17 +231,17 @@ export default function ApplyComponent() {
               <InputWrapR>
                 <InputLabel>지원 분야</InputLabel>
                 <SelField value={state.field} onChange={handleChange('field')}>
-                  <MenuItem value="Pwnable">Pwn(시스템해킹)</MenuItem>
-                  <MenuItem value="Reversing">Rev(리버싱)</MenuItem>
-                  <MenuItem value="Web Hacking">Web Hacking(웹해킹)</MenuItem>
-                  <MenuItem value="Forensic">Forensic(포렌식)</MenuItem>
-                  <MenuItem value="App Development">App(앱개발)</MenuItem>
-                  <MenuItem value="Web FrontEnd Development">
+                  <MenuItem value={'Forensic'}>Forensic(포렌식)</MenuItem>
+                  <MenuItem value={'Pwnable'}>Pwn(시스템해킹)</MenuItem>
+                  <MenuItem value={'Reversing'}>Rev(리버싱)</MenuItem>
+                  <MenuItem value={'Web Hacking'}>Web Hacking(웹해킹)</MenuItem>
+                  <MenuItem value={'Web FrontEnd Development'}>
                     Web FrontEnd(웹프론트개발)
                   </MenuItem>
-                  <MenuItem value="BackEnd Development">
+                  <MenuItem value={'BackEnd Development'}>
                     Web BackEnd(웹백엔드개발)
                   </MenuItem>
+                  <MenuItem value={'App Development'}>App(앱개발)</MenuItem>
                 </SelField>
               </InputWrapR>
             </Field>
@@ -304,6 +309,7 @@ export default function ApplyComponent() {
             variant="contained"
             onClick={() => handleSubmit(false)}
             size="large"
+            disabled={btnabled}
           >
             저장하기
           </SaveBtn>
@@ -311,6 +317,7 @@ export default function ApplyComponent() {
             variant="contained"
             onClick={() => handleSubmit(true)}
             size="large"
+            disabled={btnabled}
           >
             지원하기
           </SubBtn>
