@@ -9,10 +9,10 @@ import Benefit from 'components/main/benefit';
 import Contact from 'components/main/contact';
 
 const fullpageOptions = {
-  anchors: ['ssr', 'about', 'members', 'product', 'benefit', 'contact'],
+  anchors: ['ssr', 'about', 'member', 'product', 'benefit', 'contact'],
   callbacks: ['onLeave'],
   menu: '#myMenu',
-  responsiveWidth: 600,
+  responsiveWidth: 700,
   fitToSection: false,
   dragAndMove: 'fingersonly',
   slidesNavigation: true,

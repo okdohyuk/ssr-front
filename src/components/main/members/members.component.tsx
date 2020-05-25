@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import background from 'lib/image/background_2.jpg';
 import bin from 'lib/profile/profile_bin.png';
 import back from 'lib/profile/profile_back.png';
 import you from 'lib/profile/profile_you.png';
@@ -10,16 +9,18 @@ import kim from 'lib/profile/profile_kim.png';
 import kimbo from 'lib/profile/profile_kimbo.png';
 import jo from 'lib/profile/profile_jo.png';
 import lee from 'lib/profile/profile_lee.png';
-import yun from 'lib/profile/profile_yun.png';
+import seo from 'lib/profile/profile_seo.png';
 import seon from 'lib/profile/profile_seon.png';
 import min from 'lib/profile/profile_min.png';
 import pak from 'lib/profile/profile_pak.png';
+import sung from 'lib/profile/profile_sung.png';
+import ha from 'lib/profile/profile_ha.png';
 
 const Section = styled.div`
-  background-image: url(${background});
+  background-color: #b2bec3;
   background-repeat: no-repeat;
   background-size: cover;
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 700px) {
     height: auto !important;
   }
 `;
@@ -27,23 +28,18 @@ const Section = styled.div`
 const Slide = styled.div``;
 
 const Title = styled.h1`
-  margin-left: 15px;
-  text-align: start;
   line-height: 100px;
   color: #ffe600;
-  text-shadow: -1px 0 #333333, 0 1px #333333, 1px 0 #333333, 0 -1px #333333;
+  text-shadow: -1px 0 #333333, 0 1px #333333, 1px 0 #333333, 0 -1px #333333,
+    2px 1px 2px gray;
   font-size: 50px;
-
-  @media screen and (max-width: 830px) {
-    text-align: center;
-  }
 `;
 
 const MembersWrap = styled.div`
-  width: 830px;
+  width: 800px;
   margin: 0 auto;
 
-  @media screen and (max-width: 830px) {
+  @media screen and (max-width: 800px) {
     width: 100%;
   }
 `;
@@ -63,11 +59,18 @@ const Profile = styled.div`
 const Img = styled.img`
   height: 150px;
   border-radius: 100%;
+  border: 3px solid #ffffff;
+  box-shadow: 0 30px 60px 12px rgba(0, 0, 33, 0.2),
+    0 4px 24px 0 rgba(0, 0, 33, 0.05), 0 0 1px 0 rgba(0, 0, 33, 0.09);
 `;
 
-const Name = styled.h2``;
+const Name = styled.h2`
+  text-shadow: 2px 1px 2px gray;
+`;
 
-const Field = styled.h3``;
+const Field = styled.h3`
+  text-shadow: 2px 1px 2px gray;
+`;
 
 export default () => {
   return (
@@ -89,9 +92,7 @@ export default () => {
             <Profile>
               <Img src={kimbo} alt={kimbo} />
               <Name>김보민</Name>
-              <Field>
-                수능준비중 +<br /> 자칭 한예슬
-              </Field>
+              <Field>수능준비중</Field>
             </Profile>
             <Profile>
               <Img src={min} alt={min} />
@@ -104,9 +105,19 @@ export default () => {
               <Field>서버 개발</Field>
             </Profile>
             <Profile>
-              <Img src={yun} alt={yun} />
+              <Img src={seo} alt={seo} />
               <Name>윤영서</Name>
               <Field>웹 해킹</Field>
+            </Profile>
+            <Profile>
+              <Img src={sung} alt={sung} />
+              <Name>김현성</Name>
+              <Field>디자이너</Field>
+            </Profile>
+            <Profile>
+              <Img src={ha} alt={ha} />
+              <Name>노수하</Name>
+              <Field>디자이너</Field>
             </Profile>
           </ProfileWrap>
         </MembersWrap>

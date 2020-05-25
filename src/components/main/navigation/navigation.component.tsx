@@ -13,11 +13,11 @@ const Header = styled.header`
 `;
 
 const Nav = styled.nav`
-  width: 600px;
+  width: 650px;
   height: 100%;
   margin-right: 20px;
 
-  @media screen and (max-width: 630px) {
+  @media screen and (max-width: 800px) {
     display: none;
   }
 `;
@@ -65,6 +65,9 @@ export default () => {
         <Ul id="myMenu">
           <List data-menuanchor="about">
             <NavBut href="#about">ABOUT</NavBut>
+          </List>
+          <List data-menuanchor="member">
+            <NavBut href="#member">MEMBER</NavBut>
           </List>
           <List data-menuanchor="product">
             <NavBut href="#product">PRODUCT</NavBut>

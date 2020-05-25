@@ -8,27 +8,21 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
-import main from 'lib/image/main.png';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
 const Form = styled.form`
   width: 100%;
-  text-align: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
   padding: 15px;
-`;
-
-const CardHeader = styled.div`
-  padding: 12px;
-`;
-
-const Img = styled.img`
-  height: 200px;
 `;
 
 const CardMain = styled(Card)`
   max-width: 500px;
   margin: auto;
+
   border-radius: 0 !important;
 `;
 
@@ -106,9 +100,6 @@ export default function CheckComponent() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <CardHeader>
-        <Img src={main} alt={main} />
-      </CardHeader>
       <CardMain>
         <CardContent>
           <InputWrap>
