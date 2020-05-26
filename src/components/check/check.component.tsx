@@ -22,8 +22,6 @@ const Form = styled.form`
 const CardMain = styled(Card)`
   max-width: 500px;
   margin: auto;
-
-  border-radius: 0 !important;
 `;
 
 const InputWrap = styled.div``;
@@ -36,7 +34,6 @@ const SubBtn = withStyles((theme: Theme) => ({
   root: {
     color: theme.palette.getContrastText(yellow[500]),
     backgroundColor: yellow[500],
-    borderRadius: 0,
     fontSize: '20px',
     fontWeight: 'bolder',
     '&:hover': {
@@ -80,7 +77,7 @@ export default function CheckComponent() {
 
   const load = () => {
     axios
-      .post('/api/application/load', {
+      .post('http://15.164.219.203:3030/api/application/load', {
         phone: state.phone,
         password: state.password,
       })

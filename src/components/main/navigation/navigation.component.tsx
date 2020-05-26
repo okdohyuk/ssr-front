@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import logo from 'lib/image/logo.png';
 
 const Header = styled.header`
   width: 100%;
@@ -26,10 +25,6 @@ const Logo = styled.h1`
   margin-left: 20px;
 `;
 
-const LogoImg = styled.img`
-  height: 30px;
-`;
-
 const Ul = styled.ul`
   width: 100%;
   height: 100%;
@@ -49,17 +44,23 @@ const NavBut = styled.a`
   text-decoration: none;
   outline: none;
   color: #ffffff;
-  font-weight: bold;
+  font-weight: solid;
   font-size: 26px;
+`;
+
+const LogoBtn = styled.a`
+  text-decoration: none;
+  outline: none;
+  color: #ffffff;
+  font-weight: solid;
+  font-size: 38px;
 `;
 
 export default () => {
   return (
     <Header>
       <Logo>
-        <NavBut href="#ssr">
-          <LogoImg src={logo} alt={logo} />
-        </NavBut>
+        <LogoBtn href="#ssr">SSR</LogoBtn>
       </Logo>
       <Nav>
         <Ul id="myMenu">

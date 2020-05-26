@@ -3,16 +3,10 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { withStyles, Theme } from '@material-ui/core/styles';
 
-import background from 'lib/image/background_1.jpg';
-
-import main2 from 'lib/image/main2.png';
+import main from 'lib/image/logo.png';
 import styled from 'styled-components';
 
-const BG = styled.div`
-  background-image: url(${background});
-  background-repeat: no-repeat;
-  background-size: cover;
-`;
+const BG = styled.div``;
 
 const Img = styled.img`
   width: 600px;
@@ -33,9 +27,9 @@ const Btn = withStyles((theme: Theme) => ({
   root: {
     width: 300,
     borderRadius: 50,
-    border: '2px solid #A19EE7',
+    border: '2px solid #FF6F61',
     margin: 10,
-    color: '#A19EE7',
+    color: '#FF6F61',
     backgroundColor: 'transparent',
     fontSize: '20px',
     fontWeight: 'bolder',
@@ -47,7 +41,7 @@ const Btn = withStyles((theme: Theme) => ({
 
 export default () => (
   <BG className="section">
-    <Img src={main2} alt={main2} />
+    <Img src={main} alt={main} />
     <LinkWrap>
       <Move to="/apply">
         <Btn variant="contained" disableElevation>

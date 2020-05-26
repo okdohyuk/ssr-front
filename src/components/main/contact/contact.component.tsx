@@ -4,20 +4,15 @@ import apply from 'lib/image/apply.png';
 import kakao from 'lib/image/kakao.png';
 import facebook from 'lib/image/facebook.png';
 
-const BG = styled.div`
-  background-color: #6c5ce7;
-  background-repeat: no-repeat;
-  background-size: cover;
-`;
+const BG = styled.div``;
 
 const Title = styled.h1`
   color: #ffe600;
   line-height: 150px;
-  font-size: 100px;
-  text-shadow: -1px 0 #333333, 0 1px #333333, 1px 0 #333333, 0 -1px #333333,
-    2px 1px 2px gray;
+  font-size: 75px;
+  text-shadow: -1px 0 #333333, 0 1px #333333, 1px 0 #333333, 0 -1px #333333;
 
-  @media screen and (max-width: 830px) {
+  @media screen and (max-width: 900px) {
     font-size: 50px;
     line-height: 80px;
   }
@@ -27,7 +22,6 @@ const Text = styled.div`
   color: #ffffff;
   font-size: 50px;
   line-height: 100px;
-  text-shadow: 2px 1px 2px gray;
 
   @media screen and (max-width: 830px) {
     line-height: 50px;

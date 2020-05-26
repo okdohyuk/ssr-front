@@ -12,7 +12,7 @@ import { yellow } from '@material-ui/core/colors';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import main from 'lib/image/main.png';
+import main from 'lib/image/logo.png';
 import styled from 'styled-components';
 
 const Form = styled.form`
@@ -26,7 +26,11 @@ const CardHeader = styled.div`
 `;
 
 const Img = styled.img`
-  height: 200px;
+  width: 360px;
+
+  @media screen and (max-width: 400px) {
+    width: 100%;
+  }
 `;
 
 const Header = styled.h4``;
@@ -34,7 +38,6 @@ const Header = styled.h4``;
 const CardMain = styled(Card)`
   max-width: 1000px;
   margin: auto;
-  border-radius: 0 !important;
 `;
 
 const AccountWrap = styled.div`
@@ -49,9 +52,11 @@ const Field = styled.div`
 
 const InputWrap = styled(FormControl)`
   width: 48%;
+  height: 60px;
 `;
 const InputWrapR = styled(FormControl)`
   width: 48%;
+  height: 60px;
   float: right;
 `;
 
@@ -63,7 +68,6 @@ const SaveBtn = withStyles((theme: Theme) => ({
   root: {
     color: theme.palette.getContrastText(yellow[500]),
     backgroundColor: yellow[500],
-    borderRadius: 0,
     flex: 1,
     fontSize: '20px',
     fontWeight: 'bolder',
@@ -77,7 +81,6 @@ const SubBtn = withStyles((theme: Theme) => ({
   root: {
     color: theme.palette.getContrastText(yellow[500]),
     backgroundColor: yellow[500],
-    borderRadius: 0,
     flex: 1,
     fontSize: '20px',
     fontWeight: 'bolder',
@@ -151,7 +154,6 @@ const ReviseComponent: React.SFC<RouteComponentProps<MatchParams>> = ({
     content: match.params.content,
     password: '',
   });
-  console.log(state.field);
 
   const handleChange = (name: keyof typeof state) => (
     event: React.ChangeEvent<{
@@ -184,7 +186,7 @@ const ReviseComponent: React.SFC<RouteComponentProps<MatchParams>> = ({
 
   const patch = (sub: boolean) => {
     axios
-      .patch('/api/application', {
+      .patch('http://15.164.219.203:3030/api/application', {
         pk: state.pk,
         phone: state.phone,
         classNum: state.classNum,
@@ -220,7 +222,6 @@ const ReviseComponent: React.SFC<RouteComponentProps<MatchParams>> = ({
         <CardContent>
           <AccountWrap>
             <Header>계정</Header>
-            <hr />
             <InputWrap>
               <InputPhone
                 label="전화번호"
@@ -241,7 +242,6 @@ const ReviseComponent: React.SFC<RouteComponentProps<MatchParams>> = ({
           </AccountWrap>
           <FieldWrap>
             <Header>신청서</Header>
-            <hr />
             <Field>
               <InputWrap>
                 <InputName

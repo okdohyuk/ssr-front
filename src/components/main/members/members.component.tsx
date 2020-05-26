@@ -15,23 +15,17 @@ import min from 'lib/profile/profile_min.png';
 import pak from 'lib/profile/profile_pak.png';
 import sung from 'lib/profile/profile_sung.png';
 import ha from 'lib/profile/profile_ha.png';
+import LeftArr from 'lib/image/left_btn.png';
+import RightArr from 'lib/image/right_btn.png';
 
-const Section = styled.div`
-  background-color: #b2bec3;
-  background-repeat: no-repeat;
-  background-size: cover;
-  @media screen and (max-width: 700px) {
-    height: auto !important;
-  }
-`;
+const Section = styled.div``;
 
 const Slide = styled.div``;
 
 const Title = styled.h1`
   line-height: 100px;
   color: #ffe600;
-  text-shadow: -1px 0 #333333, 0 1px #333333, 1px 0 #333333, 0 -1px #333333,
-    2px 1px 2px gray;
+  text-shadow: -1px 0 #333333, 0 1px #333333, 1px 0 #333333, 0 -1px #333333;
   font-size: 50px;
 `;
 
@@ -40,12 +34,13 @@ const MembersWrap = styled.div`
   margin: 0 auto;
 
   @media screen and (max-width: 800px) {
-    width: 100%;
+    width: 90%;
   }
 `;
 
 const ProfileWrap = styled.div`
   display: flex;
+  height: 100%;
   justify-content: space-around;
   flex-wrap: wrap;
 `;
@@ -54,27 +49,83 @@ const Profile = styled.div`
   width: 160px;
   margin: 10px 10px 40px 10px;
   color: #ffffff;
+
+  @media screen and (max-width: 600px) {
+    width: 100px;
+    margin: 5px;
+    font-size: 10px;
+  }
+  @media screen and (max-width: 490px) {
+    width: 70px;
+    margin: 5px;
+    font-size: 10px;
+  }
 `;
 
 const Img = styled.img`
-  height: 150px;
+  width: 100%;
   border-radius: 100%;
-  border: 3px solid #ffffff;
-  box-shadow: 0 30px 60px 12px rgba(0, 0, 33, 0.2),
-    0 4px 24px 0 rgba(0, 0, 33, 0.05), 0 0 1px 0 rgba(0, 0, 33, 0.09);
+
+  box-shadow: 0 30px 34px 12px rgba(0, 0, 0, 0.2),
+    0 4px 24px 0 rgba(0, 0, 0, 0.05), 0 0 1px 0 rgba(0, 0, 0, 0.05);
+
+  @media screen and (max-width: 730px) {
+    box-shadow: 0 15px 20px 6px rgba(0, 0, 0, 0.2),
+      0 2px 12px 0 rgba(0, 0, 0, 0.05), 0 0 1px 0 rgba(0, 0, 0, 0.05);
+  }
 `;
 
 const Name = styled.h2`
-  text-shadow: 2px 1px 2px gray;
+  text-shadow: 0 15px 20px 6px rgba(0, 0, 0, 0.2),
+    0 2px 12px 0 rgba(0, 0, 0, 0.05), 0 0 1px 0 rgba(0, 0, 0, 0.05);
 `;
 
 const Field = styled.h3`
-  text-shadow: 2px 1px 2px gray;
+  text-shadow: 0 15px 20px 6px rgba(0, 0, 0, 0.2),
+    0 2px 12px 0 rgba(0, 0, 0, 0.05), 0 0 1px 0 rgba(0, 0, 0, 0.05);
 `;
 
-export default () => {
+const LeftBtn = styled.img`
+  height: 70px;
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  left: 20px;
+  margin-top: -38px;
+  z-index: 2;
+
+  @media screen and (max-width: 730px) {
+    display: none;
+  }
+`;
+
+const RightBtn = styled.img`
+  height: 70px;
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  right: 20px;
+  margin-top: -38px;
+  z-index: 2;
+
+  @media screen and (max-width: 730px) {
+    display: none;
+  }
+`;
+
+export default ({ fullpageApi }: any) => {
   return (
     <Section className="section">
+      <LeftBtn
+        src={LeftArr}
+        alt={LeftArr}
+        onClick={() => fullpageApi.moveSlideLeft()}
+      />
+      <RightBtn
+        src={RightArr}
+        alt={RightArr}
+        onClick={() => fullpageApi.moveSlideRight()}
+      />
       <Slide className="slide" data-anchor="slide1">
         <MembersWrap>
           <Title>10th</Title>
@@ -122,6 +173,7 @@ export default () => {
           </ProfileWrap>
         </MembersWrap>
       </Slide>
+
       <Slide className="slide" data-anchor="slide2">
         <MembersWrap>
           <Title>11th</Title>

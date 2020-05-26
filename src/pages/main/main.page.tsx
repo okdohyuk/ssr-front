@@ -12,10 +12,11 @@ const fullpageOptions = {
   anchors: ['ssr', 'about', 'member', 'product', 'benefit', 'contact'],
   callbacks: ['onLeave'],
   menu: '#myMenu',
-  responsiveWidth: 700,
+  navigation: true,
   fitToSection: false,
   dragAndMove: 'fingersonly',
   slidesNavigation: true,
+  controlArrows: false,
 };
 
 export default () => {
@@ -24,12 +25,12 @@ export default () => {
       <Navigation />
       <ReactFullpage
         {...fullpageOptions}
-        render={() => {
+        render={({ fullpageApi }: any) => {
           return (
             <ReactFullpage.Wrapper>
               <SSR />
               <About />
-              <Members />
+              <Members fullpageApi={fullpageApi} />
               <Product />
               <Benefit />
               <Contact />

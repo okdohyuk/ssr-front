@@ -2,17 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import TextLoop from 'react-text-loop';
 
-const BG = styled.div`
-  background-color: #242021;
-  background-repeat: no-repeat;
-  background-size: cover;
-`;
+const BG = styled.div``;
 
 const Title = styled.h1`
   color: #ffe600;
   text-shadow: -1px 0 #333333, 0 1px #333333, 1px 0 #333333, 0 -1px #333333;
   line-height: 150px;
-  font-size: 100px;
+  font-size: 75px;
 
   @media screen and (max-width: 900px) {
     font-size: 50px;
@@ -21,24 +17,31 @@ const Title = styled.h1`
 `;
 
 const Contents = styled.div`
-  width: 875px;
+  width: 930px;
   height: 300px;
   font-size: 50px;
   line-height: 80px;
+  overflow: visible;
 
   white-space: nowrap;
   color: #ffffff;
 
-  @media screen and (max-width: 900px) {
-    width: 525px;
+  @media screen and (max-width: 930px) {
+    width: 555px;
     height: unset;
     font-size: 30px;
     line-height: 50px;
   }
 
-  @media screen and (max-width: 530px) {
-    width: 315px;
+  @media screen and (max-width: 555px) {
+    width: 340px;
     font-size: 18px;
+    line-height: 30px;
+  }
+
+  @media screen and (max-width: 340px) {
+    width: 340px;
+    font-size: 14px;
     line-height: 30px;
   }
 `;
@@ -47,7 +50,7 @@ export default () => {
   return (
     <BG className="section">
       <Title>ABOUT</Title>
-      <TextLoop noWrap={false} mask={true} interval={5000}>
+      <TextLoop noWrap={false} mask={true} interval={4000}>
         <Contents>
           저희 <b>시스템 보안 연구 동아리</b>는 10년이 넘는
           <br />

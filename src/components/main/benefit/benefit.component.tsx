@@ -5,9 +5,9 @@ import club2 from 'lib/image/club_2.jpg';
 var ReactRotatingText = require('react-rotating-text');
 
 const BG = styled.div`
-  background-color: #415eab;
-  background-repeat: no-repeat;
-  background-size: cover;
+  @media screen and (max-width: 900px) {
+    background-color: #272727;
+  }
 `;
 
 const Slide = styled.div``;
@@ -16,12 +16,10 @@ const Title = styled.h1`
   width: 50%;
   color: #ffe600;
   text-shadow: -1px 0 #333333, 0 1px #333333, 1px 0 #333333, 0 -1px #333333;
-  font-size: 70px;
+  font-size: 75px;
 
   @media screen and (max-width: 900px) {
     width: 100%;
-  }
-  @media screen and (max-width: 830px) {
     font-size: 50px;
   }
 `;
@@ -66,7 +64,7 @@ const Img = styled.img`
   position: relative;
 
   @media screen and (max-width: 900px) {
-    opacity: 0.8;
+    opacity: 0.6;
   }
 `;
 
@@ -75,7 +73,7 @@ const textArray = [
   '전공실력 Upgrade!',
   '교내 TOP 1 동아리',
   '다양한 분야에서 활동',
-  '많은 인맥 보유',
+  '',
 ];
 
 export default () => {
@@ -85,8 +83,8 @@ export default () => {
         <Title>Benefit</Title>
         <Text>
           <ReactRotatingText
-            pause={4000}
-            emptyPause={500}
+            pause={3500}
+            emptyPause={300}
             deletingInterval={20}
             items={textArray}
           />
