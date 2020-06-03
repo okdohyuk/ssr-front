@@ -8,9 +8,17 @@ import styled from 'styled-components';
 
 const BG = styled.div``;
 
+const ImgWrap = styled.div`
+  height: 330.72px;
+  margin-bottom: 60px;
+
+  @media screen and (max-width: 620px) {
+    height: 165.36px;
+  }
+`;
+
 const Img = styled.img`
   width: 600px;
-  margin-bottom: 60px;
 
   @media screen and (max-width: 620px) {
     width: 300px;
@@ -41,7 +49,9 @@ const Btn = withStyles((theme: Theme) => ({
 
 export default () => (
   <BG className="section">
-    <Img src={main} alt={main} />
+    <ImgWrap>
+      <Img src={main} alt={main} />
+    </ImgWrap>
     <LinkWrap>
       <Move to="/apply">
         <Btn variant="contained" disableElevation>

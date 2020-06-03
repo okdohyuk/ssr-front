@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import { Eclipse } from 'react-loading-io';
 import { withStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { yellow } from '@material-ui/core/colors';
@@ -42,6 +42,21 @@ const SubBtn = withStyles((theme: Theme) => ({
   },
 }))(Button);
 
+const LoadWarp = styled.div`
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+`;
+
+const Spiners = styled(Eclipse)`
+  margin: 0 auto 0 auto;
+`;
+
 export interface FormData {
   phone: string;
   password: string;
@@ -62,22 +77,22 @@ export default function CheckComponent() {
     });
   };
 
-  const [btnabled, setBtnabled] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    setBtnabled(true);
+    setLoading(true);
     if (state.phone.trim() && state.password.trim()) {
       load();
     } else {
-      alert('빈칸을 모두 채워주세요.');
-      setBtnabled(false);
+      setLoading(false);
+      alert('빈칸을 모두 채워주세요!');
     }
   };
 
   const load = () => {
     axios
-      .post('http://15.164.219.203:3030/api/application/load', {
+      .post('/api/application/load', {
         phone: state.phone,
         password: state.password,
       })
@@ -89,8 +104,8 @@ export default function CheckComponent() {
       })
       .catch(function (error) {
         if (error.response) {
+          setLoading(false);
           alert(error.response.data.message);
-          setBtnabled(false);
         }
       });
   };
@@ -123,12 +138,17 @@ export default function CheckComponent() {
             type="submit"
             fullWidth
             size="large"
-            disabled={btnabled}
+            disabled={loading}
           >
             조회하기
           </SubBtn>
         </CardActions>
       </CardMain>
+      <LoadWarp
+        style={loading ? { visibility: 'visible' } : { visibility: 'hidden' }}
+      >
+        <Spiners size={100} color={'#FF6F61'} />
+      </LoadWarp>
     </Form>
   );
 }

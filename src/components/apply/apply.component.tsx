@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Eclipse } from 'react-loading-io';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
@@ -104,6 +105,21 @@ const SelStudentNum = styled(Select)``;
 
 const InputContent = styled(TextField)``;
 
+const LoadWarp = styled.div`
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+`;
+
+const Spiners = styled(Eclipse)`
+  margin: 0 auto 0 auto;
+`;
+
 export interface FormData {
   phone: string;
   classNum: string;
@@ -117,7 +133,8 @@ export interface FormData {
     | 'Web FrontEnd Development'
     | 'BackEnd Development'
     | 'App Development'
-    | 'Reversing';
+    | 'Reversing'
+    | 'Designer';
   content: string;
   password: string;
 }
@@ -145,10 +162,10 @@ export default function ApplyComponent() {
     });
   };
 
-  const [btnabled, setBtnabled] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (sub: boolean) => {
-    setBtnabled(true);
+    setLoading(true);
     if (
       state.phone.trim() &&
       state.classNum !== '' &&
@@ -160,14 +177,14 @@ export default function ApplyComponent() {
     ) {
       post(sub);
     } else {
-      alert('빈칸을 모두 채워주세요.');
-      setBtnabled(false);
+      setLoading(false);
+      alert('빈칸을 모두 채워주세요!');
     }
   };
 
   const post = (sub: boolean) => {
     axios
-      .post('http://15.164.219.203:3030/api/application', {
+      .post('/api/application', {
         phone: state.phone,
         classNum: state.classNum,
         studentNum: state.studentNum,
@@ -178,6 +195,7 @@ export default function ApplyComponent() {
         isSubmit: sub,
       })
       .then(function (response) {
+        setLoading(false);
         if (sub) {
           alert('지원서 등록이 완료되었습니다!');
         } else {
@@ -187,8 +205,8 @@ export default function ApplyComponent() {
       })
       .catch(function (error) {
         if (error.response) {
-          alert(error.response.data.message);
-          setBtnabled(false);
+          setLoading(false);
+          alert('특수문자는 !@#$%^&+=만 사용 가능합니다!');
         }
       });
   };
@@ -217,6 +235,9 @@ export default function ApplyComponent() {
                 type="password"
                 value={state.password}
                 onChange={handleChange('password')}
+                inputProps={{
+                  maxLength: 15,
+                }}
               />
             </InputWrapR>
           </AccountWrap>
@@ -244,6 +265,7 @@ export default function ApplyComponent() {
                     Web BackEnd(웹백엔드개발)
                   </MenuItem>
                   <MenuItem value={'App Development'}>App(앱개발)</MenuItem>
+                  <MenuItem value={'Designer'}>Designer(디자이너)</MenuItem>
                 </SelField>
               </InputWrapR>
             </Field>
@@ -254,11 +276,10 @@ export default function ApplyComponent() {
                   value={state.classNum}
                   onChange={handleChange('classNum')}
                 >
-                  <MenuItem value={1}>게임 1반</MenuItem>
-                  <MenuItem value={2}>정보보안 1반</MenuItem>
-                  <MenuItem value={3}>정보보안 2반</MenuItem>
-                  <MenuItem value={4}>정보보안 3반</MenuItem>
-                  <MenuItem value={5}>정보보안 4반</MenuItem>
+                  <MenuItem value={1}>정보보안 1반</MenuItem>
+                  <MenuItem value={2}>정보보안 2반</MenuItem>
+                  <MenuItem value={3}>정보보안 3반</MenuItem>
+                  <MenuItem value={4}>정보보안 4반</MenuItem>
                 </SelClassNum>
               </InputWrap>
               <InputWrapR>
@@ -311,7 +332,7 @@ export default function ApplyComponent() {
             variant="contained"
             onClick={() => handleSubmit(false)}
             size="large"
-            disabled={btnabled}
+            disabled={loading}
           >
             저장하기
           </SaveBtn>
@@ -319,12 +340,17 @@ export default function ApplyComponent() {
             variant="contained"
             onClick={() => handleSubmit(true)}
             size="large"
-            disabled={btnabled}
+            disabled={loading}
           >
             지원하기
           </SubBtn>
         </CardActions>
       </CardMain>
+      <LoadWarp
+        style={loading ? { visibility: 'visible' } : { visibility: 'hidden' }}
+      >
+        <Spiners size={100} color={'#FF6F61'} />
+      </LoadWarp>
     </Form>
   );
 }

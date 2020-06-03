@@ -49,6 +49,7 @@ const Profile = styled.div`
   width: 160px;
   margin: 10px 10px 40px 10px;
   color: #ffffff;
+  font-size: 15px;
 
   @media screen and (max-width: 600px) {
     width: 100px;
@@ -56,9 +57,9 @@ const Profile = styled.div`
     font-size: 10px;
   }
   @media screen and (max-width: 490px) {
-    width: 70px;
+    width: 80px;
     margin: 5px;
-    font-size: 10px;
+    font-size: 8px;
   }
 `;
 
@@ -75,15 +76,9 @@ const Img = styled.img`
   }
 `;
 
-const Name = styled.h2`
-  text-shadow: 0 15px 20px 6px rgba(0, 0, 0, 0.2),
-    0 2px 12px 0 rgba(0, 0, 0, 0.05), 0 0 1px 0 rgba(0, 0, 0, 0.05);
-`;
+const Name = styled.h2``;
 
-const Field = styled.h3`
-  text-shadow: 0 15px 20px 6px rgba(0, 0, 0, 0.2),
-    0 2px 12px 0 rgba(0, 0, 0, 0.05), 0 0 1px 0 rgba(0, 0, 0, 0.05);
-`;
+const Field = styled.div``;
 
 const LeftBtn = styled.img`
   height: 70px;

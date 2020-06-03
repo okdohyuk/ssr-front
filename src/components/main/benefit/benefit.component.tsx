@@ -62,6 +62,7 @@ const Img = styled.img`
   height: 100%;
   z-index: -1;
   position: relative;
+  opacity: 0.9;
 
   @media screen and (max-width: 900px) {
     opacity: 0.6;
@@ -73,7 +74,6 @@ const textArray = [
   '전공실력 Upgrade!',
   '교내 TOP 1 동아리',
   '다양한 분야에서 활동',
-  '',
 ];
 
 export default () => {

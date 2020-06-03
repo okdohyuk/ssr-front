@@ -37,7 +37,7 @@ const List = styled.li`
   height: 100%;
   display: flex;
   align-items: center;
-  font-size: 20px;
+  font-size: 25px;
 `;
 
 const NavBut = styled.a`
@@ -45,7 +45,6 @@ const NavBut = styled.a`
   outline: none;
   color: #ffffff;
   font-weight: solid;
-  font-size: 26px;
 `;
 
 const LogoBtn = styled.a`
